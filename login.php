@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user = mysqli_fetch_assoc($result);
 
         if (password_verify($password, $user['password'])) {
-            $_SESSION['user_id'] = $user['ID']; 
+            $_SESSION['userID'] = $user['ID']; 
             $_SESSION['username'] = $user['username'];
             header("Location: home.php"); 
             exit();
