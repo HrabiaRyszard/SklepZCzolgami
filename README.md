@@ -1,4 +1,4 @@
-# SklepZCzolgami
+# SklepOgrodniczy
 Projekt na lekcje PHP
 
 Krystian & Szymon => Backend
