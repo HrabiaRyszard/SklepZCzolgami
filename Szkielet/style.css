@@ -13,8 +13,14 @@ header{
     margin: 0;
 }
 .hOptions{
-    word-spacing: 2vw;
     text-align: center;
+}
+.hOptions>a{
+    border: 1px solid black;
+    padding: 15px;
+    background-color: #6ac43a;
+    font-size: x-large;
+    margin: 0;
 }
 .buttonContainer{
     position: absolute;
@@ -86,4 +92,41 @@ main{
     font-weight: bolder;
     border-radius: 0;
     background-color: yellow;
+}
+.details{
+    background-color: white;
+    display: grid; 
+    grid-template-columns: 1.4fr 0.6fr; 
+    grid-template-rows: 4fr 0.6fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+      ". ."
+      ". ."; 
+    justify-content: stretch; 
+    align-content: stretch; 
+    justify-items: stretch; 
+    align-items: stretch; 
+}
+.description{
+    height: 57.7vh;
+    font-size: large;
+    line-height: 1.5;
+    padding: 20px;
+}
+.buyButton>a>button{
+    height: 100px;
+    width: 400px;
+    font-size: 30px;
+    font-weight: bolder;
+    border-radius: 0;
+    background-color: yellow;
+}
+.imagesView>img{
+    height: 650px;
+    padding: 20px;
+}
+.productName>h2{
+    font-size: 300%;
+    margin: 0;
+    padding: 0;
 }
