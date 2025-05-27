@@ -14,10 +14,10 @@ session_destroy();
 
 require 'db.php';
 
-$sql = "DELETE FROM konta WHERE id = $id";
+$sql = "DELETE FROM uzytkownik WHERE uzytkownik_id = $id";
 
 mysqli_query($db, $sql);
 
-header("Location: home.php");
+header("Location: index.php");
 exit();
 ?>

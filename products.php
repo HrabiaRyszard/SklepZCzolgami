@@ -4,44 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sklep Ogrodniczy</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styl.css">
 </head>
 <body>
     <header>
-        <a href="index.html"><h1 class="noMargin">Sklep ogrodniczy</h1></a>
+        <a href="index.php"><h1 class="noMargin">Sklep ogrodniczy</h1></a>
         <div class="hOptions">
-            <a href="products.html">Sklep</a>
-            <a href="cart.html">Koszyk</a>
+            <a href="products.php">Sklep</a>
+            <a href="cart.php">Koszyk</a>
         </div>
         <div class="buttonContainer">
-            <a href="login.html"><button>Logowanie</button></a>
-            <a href="register.html"><button>Rejestracja</button></a>
+            <a href="login.php"><button>Logowanie</button></a>
+            <a href="register.php"><button>Rejestracja</button></a>
         </div>
     </header>
     <main>
         <div class="productPanel">
-            <a href="details.html" class="productLink">
+            <a href="details.php" class="productLink">
                 <div class="productContainer">
                     <img src="placeholder.png" alt="placeholder.png">
                     <h2>Product</h2>
                     <h3>Cena: <b>69,69 zł</b></h3>
                 </div>
             </a>
-            <a href="details.html" class="productLink">
+            <a href="details.php" class="productLink">
                 <div class="productContainer">
                     <img src="placeholder.png" alt="placeholder.png">
                     <h2>Product</h2>
                     <h3>Cena: <b>69,69 zł</b></h3>
                 </div>
             </a>
-            <a href="details.html" class="productLink">
+            <a href="details.php" class="productLink">
                 <div class="productContainer">
                     <img src="placeholder.png" alt="placeholder.png">
                     <h2>Product</h2>
                     <h3>Cena: <b>69,69 zł</b></h3>
                 </div>
             </a>
-            <a href="details.html" class="productLink">
+            <a href="details.php" class="productLink">
                 <div class="productContainer">
                     <img src="placeholder.png" alt="placeholder.png">
                     <h2>Product</h2>

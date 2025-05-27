@@ -2,17 +2,18 @@
 require 'db.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = mysqli_real_escape_string($db, $_POST['username']);
-    $password = mysqli_real_escape_string($db, $_POST['password']);
+    $imie = mysqli_real_escape_string($db, $_POST['imie']);
+    $nazwisko = mysqli_real_escape_string($db, $_POST['nazwisko']);
+    $email = mysqli_real_escape_string($db, $_POST['email']);
+    $login = mysqli_real_escape_string($db, $_POST['login']);
+    $password = mysqli_real_escape_string($db, $_POST['haslo']);
 
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
+    $sql = "INSERT INTO uzytkownik (imie, nazwisko, email, login, haslo) VALUES ('$imie', '$nazwisko', '$email', '$login', '$hashed_password')";
+    mysqli_query($db, $sql);
 
-    $sql = "INSERT INTO konta (username, password) VALUES ('$username', '$hashed_password')";
-
-mysqli_query($db, $sql);
-
-mysqli_close($db);
+    mysqli_close($db);
 }
 ?>
 
@@ -21,20 +22,43 @@ mysqli_close($db);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="StylLogin.css">
-    <title>Sklep z czołgami</title>
+    <title>Sklep Ogrodniczy</title>
+    <link rel="stylesheet" href="styl.css">
 </head>
-    <body>
+<body>
+    <header>
+        <a href="index.php"><h1 class="noMargin">Sklep ogrodniczy</h1></a>
+        <div class="hOptions">
+            <a href="products.php">Sklep</a>
+            <a href="cart.php">Koszyk</a>
+        </div>
+        <div class="buttonContainer">
+            <a href="login.php"><button>Logowanie</button></a>
+            <a href="register.php"><button>Rejestracja</button></a>
+        </div>
+    </header>
+
+    <main>
         <div class="container">
-            <h2>Zarejestruj Się</h2>
+            <h2>Zarejestruj się</h2>
             <form action="#" method="POST">
-                <input type="text" name="username" placeholder="Imię" required>
-                <input type="password" name="password" placeholder="hasło" required>
-                <button type="submit">Zarejestruj Się</button>
+                <input type="text" name="imie" placeholder="Imię" required>
+                <input type="text" name="nazwisko" placeholder="Nazwisko" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="text" name="login" placeholder="Login" required>
+                <input type="password" name="haslo" placeholder="Hasło" required>
+                <button type="submit">Zarejestruj się</button>
             </form>
             <div class="link">
                 <p>Posiadasz konto? <a href="login.php">Zaloguj się tutaj</a></p>
             </div>
         </div>
-    </body>
+    </main>
+
+    <footer>
+        <div class="noMargin">
+            Autorzy: <b>Ryszard Osiński</b>, <b>Mirosław Karpowicz</b>, <b>Szymon Linek</b>, <b>Krystian Kotowski</b>
+        </div>
+    </footer>
+</body>
 </html>

@@ -8,14 +8,14 @@
 </head>
 <body>
     <header>
-        <a href="index.html"><h1 class="noMargin">Sklep ogrodniczy</h1></a>
+        <a href="index.php"><h1 class="noMargin">Sklep ogrodniczy</h1></a>
         <div class="hOptions">
-            <a href="products.html">Sklep</a>
-            <a href="cart.html">Koszyk</a>
+            <a href="products.php">Sklep</a>
+            <a href="cart.php">Koszyk</a>
         </div>
         <div class="buttonContainer">
-            <a href="login.html"><button>Logowanie</button></a>
-            <a href="register.html"><button>Rejestracja</button></a>
+            <a href="login.php"><button>Logowanie</button></a>
+            <a href="register.php"><button>Rejestracja</button></a>
         </div>
     </header>
     <main>
@@ -24,7 +24,9 @@
         </div>
     </main>
     <footer>
-        Aututorzy: <b>Ryszard Osiński</b>, <b>Mirosław Karpowicz</b>, <b>Szymon Linek</b>, <b>Krystian Kotowski</b>
+        <div class="noMargin">
+            Autorzy: <b>Ryszard Osiński</b>, <b>Mirosław Karpowicz</b>, <b>Szymon Linek</b>, <b>Krystian Kotowski</b>
+        </div>
     </footer>
 </body>
 </html>
