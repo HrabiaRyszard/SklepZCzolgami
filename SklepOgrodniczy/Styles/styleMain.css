@@ -1,0 +1,117 @@
+body{
+    margin: 0;
+    height: 100%;
+    background-color: #3cab00;
+}
+header{
+    background-color: #3cab00;
+    line-height: 8vh;
+    text-align: center;
+    height: 15vh;
+}
+.noMargin{
+    margin: 0;
+}
+.hOptions{
+    word-spacing: 2vw;
+    text-align: center;
+}
+.buttonContainer{
+    position: absolute;
+    top: 3vh;
+    right: 3vw;
+}
+header h1{
+    font-size: 4rem;
+    font-family: 'Franklin Gothic Medium';
+}
+.buttonContainer>a>button{
+    background-color: green;
+    border-width: 0;
+    border-radius: 5px;
+    color: white;
+    height: 4.5rem;
+    width: 8rem;
+    font-size: 17px;
+}
+a{
+    color: black;
+    text-decoration: none;
+}
+footer{
+    clear: both;
+    position: relative;
+    height: 15vh;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    background-color: #3cab00;
+    line-height: 15vh;
+}
+main{
+    min-height: 70vh;
+    height: 70%;
+    background-color: #6ac43a;
+    text-align: center;
+}
+.productPanel{
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.productContainer{
+    border: 2px solid black;
+    border-radius: 20px;
+    margin: 20px;
+    height: 400px;
+    width: 300px;
+    background-color: white;
+}
+.productContainer>img{
+    padding: 20px;
+    height: 250px;
+}
+.productContainer>h2{
+    margin: 0;
+    padding: 0;
+}
+.productContainer>h3{
+    margin: 0;
+    padding: 0;
+}
+.productContainer>a>button{
+    height: 30px;
+    width: 200px;
+    font-size: 21px;
+    font-weight: bolder;
+    border-radius: 0;
+    background-color: yellow;
+}.15);
+}
+
+.productContainer img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.productContainer h2 {
+    margin: 10px 0 5px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.productContainer h3 {
+    margin: 0 0 15px;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+footer {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 20px 10px;
+    font-size: 14px;
+    font-weight: 500;
+}
