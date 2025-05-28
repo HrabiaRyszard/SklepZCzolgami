@@ -10,15 +10,15 @@
 
 <body>
     <header>
-        <a href="index.html">
+        <a href="index.php">
             <h1 class="noMargin">Sklep ogrodniczy</h1>
         </a>
         <div class="hOptions">
-            <a href="products.html">Sklep</a>
+            <a href="products.php">Sklep</a>
             <a href="cart.html">Koszyk</a>
         </div>
         <div class="buttonContainer">
-            <a href="register.html"><button>Rejestracja</button></a>
+            <a href="register.php"><button>Rejestracja</button></a>
         </div>
     </header>
 
@@ -31,7 +31,7 @@
                 <button type="submit">Zaloguj się</button>
             </form>
             <div class="link">
-                Nie masz konta? <a href="register.html">Zarejestruj się</a>
+                Nie masz konta? <a href="register.php">Zarejestruj się</a>
             </div>
         </div>
     </main>
