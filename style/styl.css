@@ -133,7 +133,7 @@ main{
 .userForm{
     background-color: white;
     width: 300px;
-    height: 35vh;
+    min-height: 35vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -165,6 +165,9 @@ main{
 }
 .userForm h2{
     font-size: xx-large;
-    margin-top: -30px;
     font-family:Verdana;
+    margin: 0;
+}
+.userForm form{
+    margin: 30px;
 }
