@@ -51,25 +51,23 @@ mysqli_close($db);
     </header>
 
     <main>
-        <div class="container">
-            <h2>Zaloguj się</h2>
-            <form action="#" method="POST">
-                <input type="text" name="login" placeholder="Login" required>
-                <input type="password" name="haslo" placeholder="Hasło" required>
-                <button type="submit">Zaloguj się</button>
-            </form>
-
-            <div class="link">
-                <p>Nie posiadasz konta? <a href="register.php">Zarejestruj się tutaj</a></p>
-                <?php
-                if ($error_message) {
-                    echo '<p class="error">' . $error_message . '</p>';
-                    $error_message = 0; 
-                }
-                ?>
+        <div class="center">
+            <div class="userForm">
+                <h2 class="noMargin">Zaloguj się</h2>
+                <form action="#" method="POST">
+                    <input type="text" name="login" placeholder="Login" required>
+                    <input type="password" name="haslo" placeholder="Hasło" required>
+                    <button type="submit">Zaloguj się</button>
+                        <?php
+                    if ($error_message) {
+                        echo '<p style="color: red;">' . $error_message . '</p>';
+                        $error_message = 0; 
+                    }
+                    ?>
+                </form>
             </div>
         </div>
-    </main>
+    </main>    
 
     <footer>
         <div class="noMargin">
