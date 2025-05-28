@@ -39,18 +39,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </header>
 
     <main>
-        <div class="container">
-            <h2>Zarejestruj się</h2>
-            <form action="#" method="POST">
-                <input type="text" name="imie" placeholder="Imię" required>
-                <input type="text" name="nazwisko" placeholder="Nazwisko" required>
-                <input type="email" name="email" placeholder="Email" required>
-                <input type="text" name="login" placeholder="Login" required>
-                <input type="password" name="haslo" placeholder="Hasło" required>
-                <button type="submit">Zarejestruj się</button>
-            </form>
-            <div class="link">
-                <p>Posiadasz konto? <a href="login.php">Zaloguj się tutaj</a></p>
+        <div class="center">
+            <div class="userForm">
+                <h2>Zarejestruj się</h2>
+                <form action="#" method="POST">
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="text" name="login" placeholder="Login" required>
+                    <input type="password" name="haslo" placeholder="Hasło" required>
+                    <button type="submit">Zarejestruj się</button>
+                </form>
             </div>
         </div>
     </main>
