@@ -10,7 +10,7 @@
 
 <body>
     <header>
-        <a href="index.html">
+        <a href="index.php">
             <h1 class="noMargin">Sklep ogrodniczy</h1>
         </a>
         <div class="hOptions">
@@ -18,8 +18,8 @@
             <a href="cart.html">Koszyk</a>
         </div>
         <div class="buttonContainer">
-            <a href="login.html"><button>Logowanie</button></a>
-            <a href="register.html"><button>Rejestracja</button></a>
+            <a href="login.php"><button>Logowanie</button></a>
+            <a href="register.php"><button>Rejestracja</button></a>
         </div>
     </header>
     <main>
