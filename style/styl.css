@@ -171,3 +171,23 @@ main{
 .userForm form{
     margin: 30px;
 }
+.operationsPanel{
+    display: flex;
+    flex-direction: column;
+    height: 50vh;
+    justify-content: space-around;
+    align-items: center;
+}
+.operationsPanel button{
+    background-color: green;
+    border-width: 0;
+    border-radius: 20px;
+    color: white;
+    height: 4.5rem;
+    width: 15rem;
+    font-size: 17px;
+}
+.operationsPanel a{
+    height: 4.5rem;
+    width: 15rem;
+}
