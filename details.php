@@ -1,26 +1,45 @@
+<?php
+require 'db.php';
+
+$id = $_GET['id'];
+
+$sql = "SELECT * FROM produkt WHERE id = $id";
+$result = mysqli_query($db, $sql);
+
+if (mysqli_num_rows($result) != 1) {
+    echo "Nie znaleziono produktu.";
+    exit;
+}
+
+$product = mysqli_fetch_assoc($result);
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sklep Ogrodniczy</title>
+    <title><?php echo $product['nazwa']; ?></title>
     <link rel="stylesheet" href="./style/styl.css">
 </head>
+
 <body>
     <header>
-        <a href="index.php"><h1 class="noMargin">Sklep ogrodniczy</h1></a>
+        <a href="index.php">
+            <h1 class="noMargin">Sklep ogrodniczy</h1>
+        </a>
         <div class="hOptions">
             <a href="products.php">Sklep</a>
             <a href="cart.php">Koszyk</a>
         </div>
-        <div class="buttonContainer">
-            <a href="login.php"><button>Logowanie</button></a>
-            <a href="register.php"><button>Rejestracja</button></a>
-        </div>
     </header>
     <main>
         <div class="details">
-            
+            <h2><?php echo $product['nazwa']; ?></h2>
+            <img src="<?php echo $product['url_zdjecia'] ? $product['url_zdjecia'] : 'placeholder.png'; ?>" alt="zdjęcie">
+            <p><strong>Cena:</strong> <?php echo $product['cena']; ?> zł</p>
+            <p><strong>Opis:</strong> <?php echo $product['opis']; ?></p>
+            <p><strong>Ilość:</strong> <?php echo $product['ilosc']; ?></p>
         </div>
     </main>
     <footer>
@@ -29,4 +48,5 @@
         </div>
     </footer>
 </body>
+
 </html>
