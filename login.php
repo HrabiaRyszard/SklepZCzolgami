@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: adminPanel.php");
             exit();
         } else {
-            $error_message = "Złe hasło lub login!";
+            $error_message = "Złe hasło!";
         }
     } else {
         $sql_user = "SELECT * FROM uzytkownik WHERE login = '$login'";
