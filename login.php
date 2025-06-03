@@ -8,38 +8,63 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $login = mysqli_real_escape_string($db, $_POST['login']);
     $password = mysqli_real_escape_string($db, $_POST['haslo']);
 
-    $sql = "SELECT * FROM uzytkownik WHERE login = '$login'";
-    $result = mysqli_query($db, $sql);
+    $sql_admin = "SELECT * FROM pracownik WHERE login = '$login'";
+    $result_admin = mysqli_query($db, $sql_admin);
 
-    if (mysqli_num_rows($result) > 0) {
-        $user = mysqli_fetch_assoc($result);
+    if (mysqli_num_rows($result_admin) > 0) {
+        $admin = mysqli_fetch_assoc($result_admin);
 
-        if (password_verify($password, $user['haslo'])) {
-            $_SESSION['userID'] = $user['uzytkownik_id']; 
-            $_SESSION['username'] = $user['login'];
-            header("Location: index.php"); 
+        if ($password === $admin['haslo']) {
+            $_SESSION['userID'] = $admin['id'];
+            $_SESSION['username'] = $admin['login'];
+            $_SESSION['role'] = 'admin';
+
+            header("Location: adminPanel.php");
             exit();
         } else {
-            $error_message = "Złe hasło!";
+            $error_message = "Złe hasło lub login!";
         }
     } else {
-        $error_message = "Nie znaleziono użytkownika!";
+        $sql_user = "SELECT * FROM uzytkownik WHERE login = '$login'";
+        $result_user = mysqli_query($db, $sql_user);
+
+        if (mysqli_num_rows($result_user) > 0) {
+            $user = mysqli_fetch_assoc($result_user);
+
+            if ($password === $user['haslo']) {
+                $_SESSION['userID'] = $user['uzytkownik_id'];
+                $_SESSION['username'] = $user['login'];
+                $_SESSION['role'] = 'user';
+
+                header("Location: index.php");
+                exit();
+            } else {
+                $error_message = "Złe hasło!";
+            }
+        } else {
+            $error_message = "Nie znaleziono użytkownika!";
+        }
     }
 }
 mysqli_close($db);
 ?>
 
+
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sklep Ogrodniczy</title>
     <link rel="stylesheet" href="./style/styl.css">
 </head>
+
 <body>
     <header>
-        <a href="index.php"><h1 class="noMargin">Sklep ogrodniczy</h1></a>
+        <a href="index.php">
+            <h1 class="noMargin">Sklep ogrodniczy</h1>
+        </a>
         <div class="hOptions">
             <a href="products.php">Sklep</a>
             <a href="cart.php">Koszyk</a>
@@ -54,20 +79,20 @@ mysqli_close($db);
         <div class="center">
             <div class="userForm">
                 <h2 class="noMargin">Zaloguj się</h2>
-                <form action="#" method="POST">
+                <form action="login.php" method="POST">
                     <input type="text" name="login" placeholder="Login" required>
                     <input type="password" name="haslo" placeholder="Hasło" required>
                     <button type="submit">Zaloguj się</button>
-                        <?php
+                    <?php
                     if ($error_message) {
                         echo '<p style="color: red;">' . $error_message . '</p>';
-                        $error_message = 0; 
+                        $error_message = 0;
                     }
                     ?>
                 </form>
             </div>
         </div>
-    </main>    
+    </main>
 
     <footer>
         <div class="noMargin">
@@ -75,4 +100,5 @@ mysqli_close($db);
         </div>
     </footer>
 </body>
+
 </html>
