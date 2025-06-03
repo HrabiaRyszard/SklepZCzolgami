@@ -35,7 +35,7 @@
         <label for="image">Zdjęcie:</label>
         <input type="file" id="image" name="image" accept="image/*" required>
 
-        <input type="submit" value="Dodaj produkt">
+        <button type="submit" value="Dodaj produkt">
     </form>
 </body>
 
