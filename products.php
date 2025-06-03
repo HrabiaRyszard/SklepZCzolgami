@@ -1,12 +1,20 @@
 <?php
 require 'db.php';
 
-$sql = "SELECT * FROM produkt";
+$limit = 10;
+$page = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
+$offset = ($page - 1) * $limit;
+
+$sql = "SELECT * FROM produkt LIMIT $limit OFFSET $offset";
 $result = mysqli_query($db, $sql);
+
+$total_result = mysqli_query($db, "SELECT COUNT(*) as total FROM produkt");
+$total_row = mysqli_fetch_assoc($total_result);
+$total_pages = ceil($total_row['total'] / $limit);
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,8 +44,15 @@ $result = mysqli_query($db, $sql);
                 </div>
             </a>
         <?php endwhile; ?>
-            
         </div>
+        <div class="pagination">
+            <?php if ($page > 1): ?>
+                <a href="?page=<?php echo $page - 1; ?>">&laquo;</a>
+            <?php endif; ?>
+            <span>Strona <?php echo $page; ?> z <?php echo $total_pages; ?></span>
+            <?php if ($page < $total_pages): ?>
+                <a href="?page=<?php echo $page + 1; ?>">&raquo;</a>
+            <?php endif; ?>
     </main>
     <footer>
         <div class="noMargin">
