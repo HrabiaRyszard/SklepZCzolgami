@@ -13,7 +13,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zarządzaj produktami</title>
-    <link rel="stylesheet" href="../style/styl.css">
+    <link rel="stylesheet" href="./style/styl.css">
 </head>
 
 <body>
@@ -35,7 +35,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
         $result = mysqli_query($db, $sql);
         while ($row = mysqli_fetch_assoc($result)) {
             echo "<tr>";
-            echo "<td><img src='img/" . $row['url_zdjecia'] . "' alt='zdjecie' class='imgProduct'></td>";
+            echo "<td><img class='productImage' src='images/" . $row['url_zdjecia'] . "' alt='zdjecie' class='imgProduct'></td>";
             echo "<td>" . $row['nazwa'] . "</td>";
             echo "<td>" . $row['opis'] . "</td>";
             echo "<td>" . $row['cena'] . "</td>";
