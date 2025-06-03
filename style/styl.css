@@ -171,6 +171,16 @@ main{
 .userForm form{
     margin: 30px;
 }
+.errorMessage {
+    color: red;
+    font-weight: bolder;
+    font-size: 16px;
+    width: 250px;
+    height: 23px;
+    border: 2px solid transparent;
+    margin-top: 10px;
+    text-align: center;
+}
 .operationsPanel{
     display: flex;
     flex-direction: column;
