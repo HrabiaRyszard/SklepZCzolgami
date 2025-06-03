@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $user = mysqli_fetch_assoc($result_user);
 
             if ($password === $user['haslo']) {
-                $_SESSION['userID'] = $user['uzytkownik_id'];
+                $_SESSION['userID'] = $user['id'];
                 $_SESSION['username'] = $user['login'];
                 $_SESSION['role'] = 'user';
 
