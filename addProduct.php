@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dodaj produkt</title>
     <link rel="stylesheet" href="../style/styl.css">
 </head>
+
 <body>
     <h1>Dodaj produkt</h1>
-    <form action="addProduct.php" method="POST" enctype="multipart/form-data">
+    <form action="addProduct.php" method="POST">
         <label for="name">Nazwa produktu:</label>
         <input type="text" id="name" name="name" required>
 
@@ -36,4 +38,5 @@
         <input type="submit" value="Dodaj produkt">
     </form>
 </body>
+
 </html>
