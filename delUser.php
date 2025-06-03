@@ -14,7 +14,7 @@ session_destroy();
 
 require 'db.php';
 
-$sql = "DELETE FROM uzytkownik WHERE uzytkownik_id = $id";
+$sql = "DELETE FROM uzytkownik WHERE id = $id";
 
 mysqli_query($db, $sql);
 
