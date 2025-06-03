@@ -24,17 +24,18 @@
     </header>
     <main>
         <div>
-            <h2>Panel Admina</h2>
+            <h2 class="noMargin">Panel Admina</h2>
             <p>Witaj w panelu administracyjnym sklepu ogrodniczego. Tutaj możesz zarządzać produktami, kategoriami i innymi ustawieniami sklepu.</p>
             <h3>Opcje administracyjne:</h3>
-            <a href="addProduct.php">Dodaj produkt</a>
-            <a href="manageProducts.php">Zarządzaj produktami</a>
-            <a href="addCategory.php">Dodaj kategorię</a>
-            <a href="manageCategories.php">Zarządzaj kategoriami</a>
-            <a href="viewOrders.php">Przeglądaj zamówienia</a>
-            <a href="manageUsers.php">Zarządzaj użytkownikami</a>
-            <a href="settings.php">Ustawienia sklepu</a>
-
+            <div class="operationsPanel">
+                <a href="addProduct.php"><button>Dodaj produkt</button></a>
+                <a href="manageProducts.php"><button>Zarządzaj produktami</button></a>
+                <a href="addCategory.php"><button>Dodaj kategorię</button></a>
+                <a href="manageCategories.php"><button>Zarządzaj kategoriami</button></a>
+                <a href="viewOrders.php"><button>Przeglądaj zamówienia</button></a>
+                <a href="manageUsers.php"><button>Zarządzaj użytkownikami</button></a>
+                <a href="settings.php"><button>Ustawienia sklepu</button></a>
+            </div>
         </div>
     </main>
     <footer>
