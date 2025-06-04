@@ -186,13 +186,13 @@ main{
 .userForm form{
     margin: 30px;
 }
-.errorMessage {
-    color: red;
-    font-weight: bolder;
-    font-size: 16px;
-    width: 250px;
-    height: 23px;
-    border: 2px solid transparent;
-    margin-top: 10px;
-    text-align: center;
+.iconButton {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    box-shadow: none;
+}
+.iconButton:focus {
+    outline: none;
 }
