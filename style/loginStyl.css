@@ -1,13 +1,16 @@
 body{
     margin: 0;
     height: 100%;
-    background-color: #3cab00;
+    background-color: #dfffce;
 }
 header{
-    background-color: #3cab00;
+    background-color: #184600;
     line-height: 8vh;
     text-align: center;
     height: 15vh;
+}
+header h1{
+    color: white;
 }
 .noMargin{
     margin: 0;
@@ -16,11 +19,13 @@ header{
     text-align: center;
 }
 .hOptions>a{
-    border: 1px solid black;
+    border: 1px solid white;
     padding: 15px;
-    background-color: #6ac43a;
+    background-color: #143a00;
     font-size: x-large;
+    border-radius: 5px;
     margin: 0;
+    color: white;
 }
 .buttonContainer{
     position: absolute;
@@ -32,10 +37,10 @@ header h1{
     font-family: 'Franklin Gothic Medium';
 }
 .buttonContainer>a>button{
-    background-color: green;
     border-width: 0;
     border-radius: 5px;
     color: white;
+    background: none;
     height: 4.5rem;
     width: 8rem;
     font-size: 17px;
@@ -47,17 +52,17 @@ a{
 footer{
     clear: both;
     position: relative;
-    height: 15vh;
+    height: 7.5vh;
     position: absolute;
     width: 100%;
     text-align: center;
-    background-color: #3cab00;
-    line-height: 15vh;
+    background-color: #184600;
+    line-height: 7.5vh;
 }
 main{
-    min-height: 70vh;
-    height: 70%;
-    background-color: #6ac43a;
+    min-height: 77.5vh;
+    height: 77.5%;
+    background-color: #dfffce;
     text-align: center;
 }
 
@@ -78,7 +83,7 @@ main{
     flex: 1;
     padding: 12px 0;
     cursor: pointer;
-    background: #cbe683;
+    background: #bfe6a2;
     color: #222;
     border: none;
     border-bottom: 4px solid transparent;
@@ -90,8 +95,8 @@ main{
 }
 .authTab.active {
     background: #fff;
-    border-bottom: 4px solid #3cab00;
-    color: #3cab00;
+    border-bottom: 4px solid #4caf50;
+    color: #184600;
 }
 .authForm {
     background-color: white;
@@ -101,7 +106,7 @@ main{
     flex-direction: column;
     align-items: center;
     border-radius: 20px;
-    border: 4px solid #3cab00;
+    border: 4px solid #4caf50;
     box-shadow: 0 2px 12px #0002;
     padding: 30px 0 20px 0;
     margin-bottom: 10px;
@@ -118,14 +123,14 @@ main{
     font-size: 1rem;
     font-weight: bolder;
     color: #222;
-    border: 2px solid #3cab00;
+    border: 2px solid #4caf50;
     border-radius: 7px;
     margin-bottom: 12px;
     padding-left: 10px;
     background: #f7fff2;
 }
 .authButton {
-    background-color: #3cab00;
+    background-color: #4caf50;
     color: white;
     border: none;
     border-radius: 7px;
@@ -139,7 +144,7 @@ main{
     transition: background 0.2s;
 }
 .authButton:hover {
-    background: #2e7d00;
+    background: #388e3c;
 }
 .authError {
     color: #d32f2f;
@@ -160,7 +165,7 @@ main{
 .orderStatusBox {
     background: #fff;
     border-radius: 20px;
-    border: 4px solid #3cab00;
+    border: 4px solid #4caf50;
     padding: 30px 30px 20px 30px;
     min-width: 320px;
     box-sizing: border-box;
@@ -170,7 +175,7 @@ main{
 .orderStatusBox h2 {
     margin-top: 0;
     font-size: 1.3rem;
-    color: #3cab00;
+    color: #184600;
 }
 .orderStatusBox form input,
 .orderStatusBox form button {
@@ -181,13 +186,13 @@ main{
 }
 .orderStatusBox form input {
     height: 30px;
-    border: 2px solid #3cab00;
+    border: 2px solid #4caf50;
     border-radius: 7px;
     padding-left: 10px;
     background: #f7fff2;
 }
 .orderStatusBox form button {
-    background-color: #3cab00;
+    background-color: #4caf50;
     color: white;
     border: none;
     border-radius: 7px;
@@ -197,7 +202,7 @@ main{
     transition: background 0.2s;
 }
 .orderStatusBox form button:hover {
-    background: #2e7d00;
+    background: #388e3c;
 }
 .orderStatusBox .authError {
     min-height: 20px;
