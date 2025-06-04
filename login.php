@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION['userID'] = $admin['id'];
                     $_SESSION['username'] = $admin['login'];
                     $_SESSION['role'] = 'admin';
-                    header("Location: adminPanel.php");
+                    header("Location: ./admin/adminPanel.php");
                     exit();
             } else {
                 $loginError = "Złe hasło!";
