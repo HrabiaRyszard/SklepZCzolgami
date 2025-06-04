@@ -1,5 +1,5 @@
 <?php
-require 'db.php';
+require '../db.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $imie = mysqli_real_escape_string($db, $_POST['imie']);
@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sklep Ogrodniczy</title>
-    <link rel="stylesheet" href="./style/styl.css">
+    <link rel="stylesheet" href="../style/styl.css">
 </head>
 
 <body>
@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <a href="cart.php">Koszyk</a>
         </div>
         <div class="buttonContainer">
-            <a href="login.php"><button>Logowanie</button></a>
+            <a href="../login.php"><button>Logowanie</button></a>
             <a href="registerEmp.php"><button>Rejestracja pracownika</button></a>
         </div>
     </header>
