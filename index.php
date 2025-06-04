@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,8 +14,11 @@
             <a href="cart.php">Koszyk</a>
         </div>
         <div class="buttonContainer">
-            <a href="login.php"><button>Logowanie</button></a>
-            <a href="register.php"><button>Rejestracja</button></a>
+            <a href="login.php" >
+                <button class="iconButton">
+                    <img src="./icons/account.svg" alt="Konto" style="width:48px; height:48px; vertical-align:middle;">
+                </button>
+            </a>
         </div>
     </header>
     <main>
