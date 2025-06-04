@@ -83,7 +83,7 @@ mysqli_close($db);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moje Konto - Sklep Ogrodniczy</title>
-    <link rel="stylesheet" href="./style/styl.css">
+    <link rel="stylesheet" href="./style/loginStyl.css">
 </head>
 
 <body>
