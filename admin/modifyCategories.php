@@ -1,8 +1,8 @@
 <?php
 session_start();
-require_once 'db.php';
+require '../db.php';
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    header("Location: login.php");
+    header("Location: ../login.php");
     exit();
 }
 
@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dodaj kategorię</title>
-    <link rel="stylesheet" href="./style/adminstyl.css">
+    <link rel="stylesheet" href="../style/adminstyl.css">
 </head>
 
 <body>
