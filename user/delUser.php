@@ -12,7 +12,7 @@ $_SESSION = [];
 
 session_destroy();
 
-require 'db.php';
+require '../db.php';
 
 $sql = "DELETE FROM uzytkownik WHERE id = $id";
 
