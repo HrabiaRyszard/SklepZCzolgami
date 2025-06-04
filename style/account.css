@@ -1,0 +1,106 @@
+.accountTitle {
+    margin-top: 30px;
+    text-align: center;
+}
+.accountPanel {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+.accountSection {
+    background: #f8f8f8;
+    border-radius: 10px;
+    padding: 24px 32px;
+    margin: 20px 0;
+    min-width: 320px;
+    max-width: 420px;
+    box-shadow: 0 2px 8px #0001;
+    flex: 1 1 340px;
+}
+@media (max-width: 1200px) {
+    .accountPanel {
+        flex-direction: column;
+        align-items: center;
+    }
+    .accountSection {
+        max-width: 95vw;
+    }
+}
+.accountForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+.accountForm label {
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+.accountForm input {
+    padding: 7px 10px;
+    border-radius: 5px;
+    border: 1px solid #bbb;
+    font-size: 1em;
+}
+.accountButton {
+    background: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 0;
+    font-size: 1em;
+    margin-top: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.accountButton:hover {
+    background: #388e3c;
+}
+.accountActions {
+    display: flex;
+    gap: 16px;
+    margin-top: 10px;
+}
+.logoutButton, .deleteButton {
+    display: inline-block;
+    padding: 7px 14px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+.logoutButton {
+    background: #2196f3;
+}
+.logoutButton:hover {
+    background: #1565c0;
+}
+.deleteButton {
+    background: #f44336;
+}
+.deleteButton:hover {
+    background: #b71c1c;
+}
+.orderHistory {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+.orderBox {
+    background: #fff;
+    border-radius: 8px;
+    padding: 16px 20px;
+    box-shadow: 0 1px 4px #0002;
+}
+.orderBox ul {
+    margin: 0;
+    padding-left: 18px;
+}
+.authError {
+    color: #d32f2f;
+    font-size: 0.95em;
+    margin-top: 4px;
+}
