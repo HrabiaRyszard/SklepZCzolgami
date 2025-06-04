@@ -91,7 +91,7 @@ while ($order = mysqli_fetch_assoc($resOrders)) {
         <div class="accountPanel">
             <div class="accountSection">
                 <h2>Dane użytkownika</h2>
-                <form method="post" action="../user/updateUser.php" class="accountForm">
+                <form method="post" action="updateUser.php" class="accountForm">
                     <input type="hidden" name="action" value="update_info">
                     <label>Imię</label>
                     <input type="text" name="imie" value="<?= htmlspecialchars($user['imie']) ?>" required>
@@ -103,15 +103,15 @@ while ($order = mysqli_fetch_assoc($resOrders)) {
                     <input type="text" name="login" value="<?= htmlspecialchars($user['login']) ?>" required>
                     <button type="submit" class="accountButton">Zapisz zmiany</button>
                 </form>
-                <form method="post" action="../user/updateUser.php" class="accountForm">
+                <form method="post" action="updateUser.php" class="accountForm">
                     <input type="hidden" name="action" value="change_password">
                     <label>Nowe hasło</label>
                     <input type="password" name="new_password" required>
                     <button type="submit" class="accountButton">Zmień hasło</button>
                 </form>
                 <div class="accountActions">
-                    <a href="../logout.php" class="logoutButton">Wyloguj się</a>
-                    <a href="../delUser.php" class="deleteButton" onclick="return confirm('Czy na pewno chcesz usunąć konto?');">Usuń konto</a>
+                    <a href="logout.php" class="logoutButton">Wyloguj się</a>
+                    <a href="delUser.php" class="deleteButton" onclick="return confirm('Czy na pewno chcesz usunąć konto?');">Usuń konto</a>
                 </div>
             </div>
             <div class="accountSection">
