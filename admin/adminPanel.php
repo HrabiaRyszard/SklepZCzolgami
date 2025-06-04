@@ -5,16 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sklep Ogrodniczy</title>
-    <link rel="stylesheet" href="./style/adminstyl.css">
+    <link rel="stylesheet" href="../style/adminstyl.css">
 </head>
 
 <body>
     <header>
-        <a href="index.php">
+        <a href="../index.php">
             <h1 class="noMargin">Sklep ogrodniczy</h1>
         </a>
         <div class="hOptions">
-            <a href="index.php">Powrót</a>
+            <a href="../index.php">Powrót</a>
         </div>
     </header>
     <main>
