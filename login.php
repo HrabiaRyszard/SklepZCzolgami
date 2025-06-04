@@ -2,6 +2,17 @@
 session_start();
 require 'db.php';
 
+if (isset($_SESSION['role'])) {
+    if($_SESSION['role'] === 'user') {
+        header("Location: ./user/account.php");
+        exit();
+    }
+    elseif ($_SESSION['role'] === 'admin') {
+        header("Location: ./admin/adminPanel.php");
+        exit();
+    }
+}
+
 $loginError = $registerError = $trackError = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -96,8 +107,11 @@ mysqli_close($db);
             <a href="cart.php">Koszyk</a>
         </div>
         <div class="buttonContainer">
-            <a href="login.php"><button>Logowanie</button></a>
-            <a href="register.php"><button>Rejestracja</button></a>
+            <a href="login.php" >
+                <button class="iconButton">
+                    <img src="./icons/account.svg" alt="Konto" style="width:48px; height:48px; vertical-align:middle;">
+                </button>
+            </a>
         </div>
     </header>
     <main>
