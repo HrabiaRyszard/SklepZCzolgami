@@ -35,11 +35,14 @@ $product = mysqli_fetch_assoc($result);
     </header>
     <main>
         <div class="details">
-            <h2><?php echo $product['nazwa']; ?></h2>
-            <img src="./images/<?php echo $product['url_zdjecia'] ? $product['url_zdjecia'] : 'placeholder.png'; ?>" alt="zdjęcie">
-            <p><strong>Cena:</strong> <?php echo $product['cena']; ?> zł</p>
-            <p><strong>Opis:</strong> <?php echo $product['opis']; ?></p>
-            <p><strong>Ilość:</strong> <?php echo $product['ilosc']; ?></p>
+            <div class="imagesView"><img src="./images/<?php echo $product['url_zdjecia'] ? $product['url_zdjecia'] : 'placeholder.png'; ?>" alt="zdjęcie"></div>
+            <div class="description">
+                <p><strong>Opis:</strong> <?php echo $product['opis']; ?></p>
+                <p><strong>Cena:</strong> <?php echo $product['cena']; ?> zł</p>
+                <p><strong>Ilość:</strong> <?php echo $product['ilosc']; ?></p>
+            </div>
+                <div class="productName"><h2><?php echo $product['nazwa']; ?></h2></div>
+                <div class="buyButton"><a href="cart.php"><button>Dodaj do Koszyka</button></a></div>
         </div>
     </main>
     <footer>

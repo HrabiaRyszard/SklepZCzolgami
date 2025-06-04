@@ -1,13 +1,16 @@
 body{
     margin: 0;
     height: 100%;
-    background-color: #3cab00;
+    background-color: #184600;
 }
 header{
-    background-color: #3cab00;
+    background-color: #184600;
     line-height: 8vh;
     text-align: center;
     height: 15vh;
+}
+header h1{
+    color: white;
 }
 .noMargin{
     margin: 0;
@@ -16,11 +19,13 @@ header{
     text-align: center;
 }
 .hOptions>a{
-    border: 1px solid black;
+    border: 1px solid white;
     padding: 15px;
-    background-color: #6ac43a;
+    background-color: #143a00;
     font-size: x-large;
+    border-radius: 5px;
     margin: 0;
+    color: white;
 }
 .buttonContainer{
     position: absolute;
@@ -47,17 +52,17 @@ a{
 footer{
     clear: both;
     position: relative;
-    height: 15vh;
+    height: 7.5vh;
     position: absolute;
     width: 100%;
     text-align: center;
-    background-color: #3cab00;
-    line-height: 15vh;
+    background-color: #184600;
+    line-height: 7.5vh;
 }
 main{
-    min-height: 70vh;
-    height: 70%;
-    background-color: #6ac43a;
+    min-height: 77.5vh;
+    height: 77.5%;
+    background-color: #dfffce;
     text-align: center;
 }
 .productPanel{
@@ -94,7 +99,7 @@ main{
     background-color: yellow;
 }
 .details{
-    background-color: white;
+    background-color: #cfcfcf;
     display: grid; 
     grid-template-columns: 1.4fr 0.6fr; 
     grid-template-rows: 4fr 0.6fr; 
@@ -108,7 +113,8 @@ main{
     align-items: stretch; 
 }
 .description{
-    height: 57.7vh;
+    background-color: #cfcfcf;
+    height: 64.3vh;
     font-size: large;
     line-height: 1.5;
     padding: 20px;
@@ -121,9 +127,18 @@ main{
     border-radius: 0;
     background-color: yellow;
 }
+.imagesView{
+    background-color: white;
+}
 .imagesView>img{
     height: 650px;
     padding: 20px;
+}
+.productName{
+    background-color: #cfcfcf;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .productName>h2{
     font-size: 300%;
@@ -180,24 +195,4 @@ main{
     border: 2px solid transparent;
     margin-top: 10px;
     text-align: center;
-}
-.operationsPanel{
-    display: flex;
-    flex-direction: column;
-    height: 50vh;
-    justify-content: space-around;
-    align-items: center;
-}
-.operationsPanel button{
-    background-color: green;
-    border-width: 0;
-    border-radius: 20px;
-    color: white;
-    height: 4.5rem;
-    width: 15rem;
-    font-size: 17px;
-}
-.operationsPanel a{
-    height: 4.5rem;
-    width: 15rem;
 }

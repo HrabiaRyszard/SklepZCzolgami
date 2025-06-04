@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sklep Ogrodniczy</title>
-    <link rel="stylesheet" href="./style/styl.css">
+    <link rel="stylesheet" href="./style/adminstyl.css">
 </head>
 
 <body>
@@ -14,12 +14,7 @@
             <h1 class="noMargin">Sklep ogrodniczy</h1>
         </a>
         <div class="hOptions">
-            <a href="products.php">Sklep</a>
-            <a href="cart.php">Koszyk</a>
-        </div>
-        <div class="buttonContainer">
-            <a href="login.php"><button>Logowanie</button></a>
-            <a href="register.php"><button>Rejestracja</button></a>
+            <a href="index.php">Powrót</a>
         </div>
     </header>
     <main>

@@ -1,0 +1,96 @@
+body{
+    margin: 0;
+    height: 100%;
+    background-color: #b45700;
+}
+header{
+    background-color: #b45700;
+    line-height: 8vh;
+    text-align: center;
+    height: 15vh;
+}
+header h1{
+    color: white;
+}
+.noMargin{
+    margin: 0;
+}
+.hOptions{
+    text-align: center;
+}
+.hOptions>a{
+    border: 1px solid black;
+    padding: 15px;
+    background-color: #ff7300;
+    font-size: x-large;
+    margin: 0;
+}
+.buttonContainer{
+    position: absolute;
+    top: 3vh;
+    right: 3vw;
+}
+header h1{
+    font-size: 4rem;
+    font-family: 'Franklin Gothic Medium';
+}
+.buttonContainer>a>button{
+    background-color: orangered;
+    border-width: 0;
+    border-radius: 5px;
+    color: white;
+    height: 4.5rem;
+    width: 8rem;
+    font-size: 17px;
+}
+a{
+    color: black;
+    text-decoration: none;
+}
+footer{
+    clear: both;
+    position: relative;
+    height: 7.5vh;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    background-color: #b45700;
+    line-height: 7.5vh;
+}
+main{
+    min-height: 77.5vh;
+    height: 77.5%;
+    background-color: #ffe8ce;
+    text-align: center;
+}
+.operationsPanel{
+    display: flex;
+    flex-direction: column;
+    height: 50vh;
+    justify-content: space-around;
+    align-items: center;
+}
+.operationsPanel button{
+    background-color: orangered;
+    border-width: 0;
+    border-radius: 20px;
+    color: white;
+    height: 4.5rem;
+    width: 15rem;
+    font-size: 17px;
+}
+.operationsPanel a{
+    height: 4.5rem;
+    width: 15rem;
+}
+.productImage{
+    height: 50px;
+}
+.modifyBtn{
+    background-color: orangered;
+    border-width: 0;
+    border-radius: 5px;
+    color: white;
+    height: 1.5rem;
+    width: 5rem;
+}
