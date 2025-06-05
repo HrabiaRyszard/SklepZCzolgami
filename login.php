@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if (mysqli_num_rows($result_admin) > 0) {
                 $admin = mysqli_fetch_assoc($result_admin);
-                if ($password === $admin['haslo']) {
+                if (password_verify($password, $admin['haslo'])) {
                     $_SESSION['userID'] = $admin['id'];
                     $_SESSION['username'] = $admin['login'];
                     $_SESSION['role'] = 'admin';
