@@ -37,7 +37,6 @@ header h1{
     font-family: 'Franklin Gothic Medium';
 }
 .buttonContainer>a>button{
-    background-color: green;
     border-width: 0;
     border-radius: 5px;
     color: white;
