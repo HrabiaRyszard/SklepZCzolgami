@@ -1,4 +1,10 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    header("Location: ../login.php");
+    exit();
+}
 require '../db.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -37,8 +43,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <a href="cart.php">Koszyk</a>
         </div>
         <div class="buttonContainer">
-            <a href="../login.php"><button>Logowanie</button></a>
-            <a href="registerEmp.php"><button>Rejestracja pracownika</button></a>
+            <a href="../login.php">
+                <button class="iconButton">
+                    <img src="../icons/account.svg" alt="Konto" style="width:48px; height:48px; vertical-align:middle;">
+                </button>
+            </a>
         </div>
     </header>
 
