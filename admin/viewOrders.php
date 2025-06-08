@@ -1,5 +1,10 @@
 <?php
-require_once 'db.php';
+session_start();
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    header("Location: ../login.php");
+    exit();
+}
+require '../db.php';
 
 $sql = "SELECT 
   z.id AS zamowienie_id,
