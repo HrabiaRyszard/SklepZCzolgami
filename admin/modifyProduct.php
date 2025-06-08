@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 $kategorie_sql = "SELECT * FROM kategoria";
 $kategorie = mysqli_query($db, $kategorie_sql);
-$images = glob('./images/*.jpg');
+$images = glob('../images/*.jpg');
 ?>
 <!DOCTYPE html>
 <html lang="pl">
