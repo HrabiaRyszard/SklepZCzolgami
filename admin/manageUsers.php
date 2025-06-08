@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    header("Location: ../login.php");
+    exit();
+}
 require '../db.php';
 
 $sql = "SELECT id, imie, nazwisko, email FROM uzytkownik";
