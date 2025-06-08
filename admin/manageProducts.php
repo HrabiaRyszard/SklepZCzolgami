@@ -1,10 +1,11 @@
 <?php
 session_start();
-require '../db.php';
+
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     header("Location: ../login.php");
     exit();
 }
+require '../db.php';
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -35,7 +36,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
         $result = mysqli_query($db, $sql);
         while ($row = mysqli_fetch_assoc($result)) {
             echo "<tr>";
-            echo "<td><img class='productImage' src='images/" . $row['url_zdjecia'] . "' alt='zdjecie' class='imgProduct'></td>";
+            echo "<td><img class='productImage' src='../images/" . $row['url_zdjecia'] . "' alt='zdjecie' class='imgProduct'></td>";
             echo "<td>" . $row['nazwa'] . "</td>";
             echo "<td>" . $row['opis'] . "</td>";
             echo "<td>" . $row['cena'] . "</td>";
