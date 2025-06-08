@@ -1,11 +1,12 @@
 <?php
 session_start();
-require '../db.php';
+
 
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     header("Location: ../login.php");
     exit();
 }
+require '../db.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
     $description = $_POST['description'];
