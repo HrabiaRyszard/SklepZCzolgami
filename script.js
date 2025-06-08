@@ -2,32 +2,19 @@ window.onload = function () {
     updateCart();
 };
 
-function addToCart(element) {
+function addToCart(id) {
+    var cookie = getCookie('koszyk');
 
-    var cardIDs = element.getElementsByClassName('cardID');
-    if (cardIDs.length > 0) {
-        var cardID = cardIDs[0];
-        var id = cardID.innerHTML;
-
-        var cookie = getCookie('koszyk');
-
-        var cookiesValues = id;
-        if (cookie != null && cookie != "") {
-            cookiesValues = cookiesValues + "," + cookie;
-        }
-        let date = new Date();
-        date.setFullYear(date.getFullYear() + 1); // Dodajemy rok do aktualnej daty
-
-
-        document.cookie = "koszyk=" + cookiesValues + "; expires=" + date.toUTCString() + ";path=/";
-        updateCart();
-        element.classList.add("clicked");
-        setTimeout(() => {
-            element.classList.remove("clicked");
-        }, 2000);
+    var cookiesValues = id;
+    if (cookie != null && cookie != "") {
+        cookiesValues = cookiesValues + "," + cookie;
     }
-}
+    let date = new Date();
+    date.setFullYear(date.getFullYear() + 1); // Dodajemy rok do aktualnej daty
 
+    document.cookie = "koszyk=" + cookiesValues + "; expires=" + date.toUTCString() + ";path=/";
+    updateCart();
+}
 function updateCart() {
     var cookie = getCookie('koszyk');
     var userCart = document.getElementById("userCart");
@@ -119,18 +106,8 @@ function onChangeDetailsValue(selectElement, orderID) {
     })
         .then(response => response.text())
         .then(data => {
-            //console.log(data);
         })
         .catch(error => console.error("Błąd:", error));
-}
-function onChangeDelivery(selectElement) {
-
-    let date = new Date();
-    date.setFullYear(date.getFullYear() + 1);
-    var id = selectElement.value;
-    document.cookie = "przesylka=" + id + "; expires=" + date.toUTCString() + ";";
-
-    setCartSum();
 }
 
 function setCartSum() {
@@ -159,55 +136,4 @@ function setCartSum() {
             sumSpan.innerHTML = sum.toFixed(2);
         }
     }
-}
-
-function validatePassword() {
-
-    var passwordElement = document.getElementById("password");
-    if (passwordElement) {
-        var password = passwordElement.value;
-
-
-
-        if (password.length < 8) {
-            alert("Hasło musi mieć co najmniej 8 znaków.");
-            return false;
-        }
-        if (!/[A-Z]/.test(password)) {
-            alert("Hasło musi zawierać co najmniej jedną dużą literę.");
-            return false;
-        }
-        if (!/[a-z]/.test(password)) {
-            alert("Hasło musi zawierać co najmniej jedną małą literę.");
-            return false;
-        }
-        if (!/[0-9]/.test(password)) {
-            alert("Hasło musi zawierać co najmniej jedną cyfrę.");
-            return false;
-        }
-        if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-            alert("Hasło musi zawierać co najmniej jeden znak specjalny (!@#$%^&* itp.).");
-            return false;
-        }
-
-        var confirmPasswordElement = document.getElementById("confirmPassword");
-        if (confirmPasswordElement) {
-            var confirmPassword = confirmPasswordElement.value;
-            if (password != confirmPassword) {
-                alert("Hasła nie są takie same!");
-                return false;
-            } else {
-
-                return true;
-            }
-        }
-        else {
-            return false;
-        }
-    }
-
-    else {
-        return false;
-    }
-
 }
