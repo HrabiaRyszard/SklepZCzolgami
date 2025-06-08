@@ -94,3 +94,13 @@ main{
     height: 1.5rem;
     width: 5rem;
 }
+.iconButton {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    box-shadow: none;
+}
+.iconButton:focus {
+    outline: none;
+}
