@@ -1,11 +1,11 @@
 <?php
 session_start();
-require '../db.php';
+
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     header("Location: ../login.php");
     exit();
 }
-
+require '../db.php';
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
     $id = $_GET["id"];
