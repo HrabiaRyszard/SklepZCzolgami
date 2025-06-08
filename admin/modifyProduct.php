@@ -1,12 +1,10 @@
 <?php
 session_start();
-require_once '../db.php';
-
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    header("Location: login.php");
+    header("Location: ../login.php");
     exit();
 }
-
+require '../db.php';
 if (!isset($_GET['id'])) {
     echo "Nieprawidłowe ID produktu.";
     exit();
