@@ -24,11 +24,18 @@ $total_pages = ceil($total_row['total'] / $limit);
 <body>
     <header>
         <a href="index.php"><h1 class="noMargin">Sklep ogrodniczy</h1></a>
-        <div class="hOptions">
-            <a href="products.php">Sklep</a>
-            <a href="cart.php">Koszyk</a>
         </div>
         <div class="buttonContainer">
+            <a href="products.php">
+                <button class="iconButton">
+                    <img src="./icons/products.svg" alt="Produkty" style="width:48px; height:48px; vertical-align:middle;">
+                </button>
+            </a>
+            <a href="cart.php">
+                <button class="iconButton">
+                    <img src="./icons/cart.svg" alt="Koszyk" style="width:48px; height:48px; vertical-align:middle;">
+                </button> 
+            </a>
             <a href="login.php" >
                 <button class="iconButton">
                     <img src="./icons/account.svg" alt="Konto" style="width:48px; height:48px; vertical-align:middle;">
