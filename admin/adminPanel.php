@@ -13,10 +13,12 @@
         <a href="../index.php">
             <h1 class="noMargin">Sklep ogrodniczy</h1>
         </a>
-        <div class="hOptions">
-            <a href="../index.php">Powrót</a>
-        </div>
         <div class="buttonContainer">
+            <a href="../index.php">
+                <button class="iconButton">
+                    <img src="../icons/close.svg" alt="Index" style="width:48px; height:48px; vertical-align:middle;">
+                </button>
+            </a>
             <a href="../user/logout.php" >
                 <button class="iconButton">
                     <img src="../icons/logout.svg" alt="Konto" style="width:48px; height:48px; vertical-align:middle;">
