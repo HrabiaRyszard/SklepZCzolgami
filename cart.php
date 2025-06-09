@@ -1,81 +1,32 @@
 <?php
 session_start();
-require 'db.php';
+require './db.php';
 
 if (!isset($_SESSION['userID'])) {
-    echo "Musisz być zalogowany, aby złożyć zamówienie.";
+    echo "Musisz być zalogowany, aby zobaczyć koszyk.";
     exit;
 }
 
 $uzytkownik_id = $_SESSION['userID'];
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['produkt_id'], $_POST['ilosc'])) {
-    $produkt_ids = $_POST['produkt_id'];
-    $ilosci = $_POST['ilosc'];
-
-    $panstwo = mysqli_real_escape_string($db, $_POST['panstwo']);
-    $miasto = mysqli_real_escape_string($db, $_POST['miasto']);
-    $ulica = mysqli_real_escape_string($db, $_POST['ulica']);
-    $numer_domu = mysqli_real_escape_string($db, $_POST['numer_domu']);
-    $numer_mieszkania = mysqli_real_escape_string($db, $_POST['numer_mieszkania']);
-    $kod_pocztowy = (int)$_POST['kod_pocztowy'];
-
-    mysqli_query($db, "INSERT INTO adres (panstwo, miasto, ulica, numer_domu, numer_mieszkania, kod_pocztowy, uzytkownik_id)
-                       VALUES ('$panstwo', '$miasto', '$ulica', '$numer_domu', '$numer_mieszkania', $kod_pocztowy, $uzytkownik_id)");
-    $adres_id = mysqli_insert_id($db);
-
-    $suma = 0;
-    $produkty = [];
-
-    for ($i = 0; $i < count($produkt_ids); $i++) {
-        $id = $produkt_ids[$i];
-        $ilosc = $ilosci[$i];
-
-        if ($ilosc > 0) {
-            $res = mysqli_query($db, "SELECT * FROM produkt WHERE id = $id");
-            $prod = mysqli_fetch_assoc($res);
-
-            if ($prod) {
-                $cena = $prod['cena'];
-                $wartosc = $cena * $ilosc;
-                $suma += $wartosc;
-
-                $produkty[] = [
-                    'id' => $id,
-                    'ilosc' => $ilosc,
-                    'suma' => $wartosc
-                ];
-            }
+$products = [];
+$quantities = [];
+if (isset($_COOKIE['koszyk']) && $_COOKIE['koszyk'] !== '') {
+    $ids = explode(',', $_COOKIE['koszyk']);
+    foreach ($ids as $id) {
+        if (!isset($quantities[$id])) {
+            $quantities[$id] = 0;
+        }
+        $quantities[$id]++;
+    }
+    $unique_ids = array_keys($quantities);
+    if (count($unique_ids) > 0) {
+        $id_list = implode(',', array_map('intval', $unique_ids));
+        $result = mysqli_query($db, "SELECT * FROM produkt WHERE id IN ($id_list)");
+        while ($row = mysqli_fetch_assoc($result)) {
+            $products[] = $row;
         }
     }
-
-    if (empty($produkty)) {
-        echo "Brak produktów w zamówieniu.";
-        exit;
-    }
-
-    $data = date("Y-m-d H:i:s");
-    $platnosc = 'gotówka';
-    $status = 'przyjęte';
-    $uwagi = 'Brak uwag';
-    $kurier_id = 1;
-
-    mysqli_query($db, "INSERT INTO zamowienie (uzytkownik_id, adres_id, platnosc, status, kurier_id, data_czas_zamowienia, suma, uwagi)
-                       VALUES ($uzytkownik_id, $adres_id, '$platnosc', '$status', $kurier_id, '$data', $suma, '$uwagi')");
-    $zamowienie_id = mysqli_insert_id($db);
-
-    foreach ($produkty as $p) {
-        mysqli_query($db, "INSERT INTO szczegoly_zamowienia (produkt_id, zamowienie_id, ilosc_produktu, suma)
-                           VALUES ({$p['id']}, $zamowienie_id, {$p['ilosc']}, {$p['suma']})");
-    }
-
-    setcookie('koszyk', '', time() - 3600, '/');
-
-    echo "<h2>Zamówienie złożone!</h2>";
-    echo "<p>Kwota do zapłaty: <b>" . number_format($suma, 2, ',', ' ') . " zł</b></p>";
-    echo "<p><a href='index.php'>Powrót do sklepu</a></p>";
-} else {
-    echo "Nieprawidłowe dane formularza.";
 }
 ?>
 
@@ -94,11 +45,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['produkt_id'], $_POST[
         <a href="index.php">
             <h1 class="noMargin">Sklep ogrodniczy</h1>
         </a>
-        <div class="hOptions">
-            <a href="products.php">Sklep</a>
-            <a href="cart.php" id="userCart">🛒 Koszyk</a>
-        </div>
         <div class="buttonContainer">
+            <a href="products.php">
+                <button class="iconButton">
+                    <img src="./icons/products.svg" alt="Produkty" style="width:48px; height:48px; vertical-align:middle;">
+                </button>
+            </a>
+            <a href="cart.php">
+                <button class="iconButton">
+                    <img src="./icons/cart.svg" alt="Koszyk" style="width:48px; height:48px; vertical-align:middle;">
+                </button> 
+            </a>
             <a href="login.php">
                 <button class="iconButton">
                     <img src="./icons/account.svg" alt="Konto" style="width:48px; height:48px; vertical-align:middle;">
@@ -122,6 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['produkt_id'], $_POST[
                             <th>Cena</th>
                             <th>Ilość</th>
                             <th>Wartość</th>
+                            <th>Akcja</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -133,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['produkt_id'], $_POST[
                             $value = $qty * $price;
                             ?>
                             <tr>
-                                <td><img src="./images/<?= $product['zdjecie'] ?>" alt="produkt"></td>
+                                <td><img src="./images/<?= $product['url_zdjecia'] ?? 'placeholder.png' ?>" alt="produkt"></td>
                                 <td><?= htmlspecialchars($product['nazwa']) ?></td>
                                 <td><?= number_format($price, 2, '.', '') ?> zł</td>
                                 <td>
@@ -141,6 +99,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['produkt_id'], $_POST[
                                     <input type="number" name="ilosc[]" value="<?= $qty ?>" min="0">
                                 </td>
                                 <td><?= number_format($value, 2, '.', '') ?> zł</td>
+                                <td>
+                                    <button type="button" onclick="removeFromCart(<?= $id ?>)">Usuń</button>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
@@ -154,7 +115,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['produkt_id'], $_POST[
                 <label>Nr domu: <input type="text" name="numer_domu" required></label><br>
                 <label>Nr mieszkania: <input type="text" name="numer_mieszkania" required></label><br>
                 <label>Kod pocztowy: <input type="text" name="kod_pocztowy" pattern="\d{2}-?\d{3}" required></label><br><br>
-
             </form>
         <?php endif; ?>
     </main>
@@ -164,6 +124,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['produkt_id'], $_POST[
             Autorzy: <b>Ryszard Osiński</b>, <b>Mirosław Karpowicz</b>, <b>Szymon Linek</b>, <b>Krystian Kotowski</b>
         </div>
     </footer>
+
+    <script>
+    function removeFromCart(id) {
+        var cookie = document.cookie.split('; ').find(row => row.startsWith('koszyk='));
+        if (!cookie) return;
+        var value = decodeURIComponent(cookie.split('=')[1]);
+        var ids = value.split(',');
+        ids = ids.filter(function(item) { return item != id; });
+        var expires = new Date();
+        expires.setFullYear(expires.getFullYear() + 1);
+        document.cookie = 'koszyk=' + ids.join(',') + '; expires=' + expires.toUTCString() + '; path=/';
+        location.reload();
+    }
+    </script>
 </body>
 
 </html>
