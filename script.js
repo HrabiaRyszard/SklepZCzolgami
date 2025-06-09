@@ -10,7 +10,7 @@ function addToCart(id) {
         cookiesValues = cookiesValues + "," + cookie;
     }
     let date = new Date();
-    date.setFullYear(date.getFullYear() + 1); // Dodajemy rok do aktualnej daty
+    date.setFullYear(date.getFullYear() + 1);
 
     document.cookie = "koszyk=" + cookiesValues + "; expires=" + date.toUTCString() + ";path=/";
     updateCart();
@@ -90,7 +90,7 @@ function updateCartInCart($id, $count) {
         }
     }
     var $date = new Date();
-    $date.setFullYear($date.getFullYear() + 1); // Dodajemy rok do aktualnej daty
+    $date.setFullYear($date.getFullYear() + 1);
 
 
     document.cookie = "koszyk=" + $newCookie + "; expires=" + $date.toUTCString() + ";path=/";
