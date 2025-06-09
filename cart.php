@@ -13,7 +13,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['produkt_id'], $_POST[
     $produkt_ids = $_POST['produkt_id'];
     $ilosci = $_POST['ilosc'];
 
-    // Dane adresowe z formularza
     $panstwo = mysqli_real_escape_string($db, $_POST['panstwo']);
     $miasto = mysqli_real_escape_string($db, $_POST['miasto']);
     $ulica = mysqli_real_escape_string($db, $_POST['ulica']);
@@ -21,7 +20,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['produkt_id'], $_POST[
     $numer_mieszkania = mysqli_real_escape_string($db, $_POST['numer_mieszkania']);
     $kod_pocztowy = (int)$_POST['kod_pocztowy'];
 
-    // Zapisz adres do bazy
     mysqli_query($db, "INSERT INTO adres (panstwo, miasto, ulica, numer_domu, numer_mieszkania, kod_pocztowy, uzytkownik_id)
                        VALUES ('$panstwo', '$miasto', '$ulica', '$numer_domu', '$numer_mieszkania', $kod_pocztowy, $uzytkownik_id)");
     $adres_id = mysqli_insert_id($db);
@@ -58,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['produkt_id'], $_POST[
 
     $data = date("Y-m-d H:i:s");
     $platnosc = 'gotówka';
-    $status = 'przyjęnte';
+    $status = 'przyjęte';
     $uwagi = 'Brak uwag';
     $kurier_id = 1;
 
