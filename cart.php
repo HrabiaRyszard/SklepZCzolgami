@@ -1,29 +1,83 @@
 <?php
+session_start();
 require 'db.php';
 
-$products = [];
-$quantities = [];
+if (!isset($_SESSION['userID'])) {
+    echo "Musisz być zalogowany, aby złożyć zamówienie.";
+    exit;
+}
 
-if (isset($_COOKIE['koszyk']) && !empty($_COOKIE['koszyk'])) {
-    $ids = explode(',', $_COOKIE['koszyk']);
+$uzytkownik_id = $_SESSION['userID'];
 
-    foreach ($ids as $id) {
-        $id = (int)$id;
-        if ($id > 0) {
-            if (!isset($quantities[$id])) {
-                $quantities[$id] = 1;
-            } else {
-                $quantities[$id]++;
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['produkt_id'], $_POST['ilosc'])) {
+    $produkt_ids = $_POST['produkt_id'];
+    $ilosci = $_POST['ilosc'];
+
+    // Dane adresowe z formularza
+    $panstwo = mysqli_real_escape_string($db, $_POST['panstwo']);
+    $miasto = mysqli_real_escape_string($db, $_POST['miasto']);
+    $ulica = mysqli_real_escape_string($db, $_POST['ulica']);
+    $numer_domu = mysqli_real_escape_string($db, $_POST['numer_domu']);
+    $numer_mieszkania = mysqli_real_escape_string($db, $_POST['numer_mieszkania']);
+    $kod_pocztowy = (int)$_POST['kod_pocztowy'];
+
+    // Zapisz adres do bazy
+    mysqli_query($db, "INSERT INTO adres (panstwo, miasto, ulica, numer_domu, numer_mieszkania, kod_pocztowy, uzytkownik_id)
+                       VALUES ('$panstwo', '$miasto', '$ulica', '$numer_domu', '$numer_mieszkania', $kod_pocztowy, $uzytkownik_id)");
+    $adres_id = mysqli_insert_id($db);
+
+    $suma = 0;
+    $produkty = [];
+
+    for ($i = 0; $i < count($produkt_ids); $i++) {
+        $id = $produkt_ids[$i];
+        $ilosc = $ilosci[$i];
+
+        if ($ilosc > 0) {
+            $res = mysqli_query($db, "SELECT * FROM produkt WHERE id = $id");
+            $prod = mysqli_fetch_assoc($res);
+
+            if ($prod) {
+                $cena = $prod['cena'];
+                $wartosc = $cena * $ilosc;
+                $suma += $wartosc;
+
+                $produkty[] = [
+                    'id' => $id,
+                    'ilosc' => $ilosc,
+                    'suma' => $wartosc
+                ];
             }
         }
     }
 
-    if (!empty($quantities)) {
-        $uniqueIds = implode(',', array_keys($quantities));
-        $sql = "SELECT * FROM produkt WHERE id IN ($uniqueIds)";
-        $result = mysqli_query($db, $sql);
-        $products = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    if (empty($produkty)) {
+        echo "Brak produktów w zamówieniu.";
+        exit;
     }
+
+    $data = date("Y-m-d H:i:s");
+    $platnosc = 'gotówka';
+    $status = 'przyjęnte';
+    $uwagi = 'Brak uwag';
+    $kurier_id = 1;
+
+    mysqli_query($db, "INSERT INTO zamowienie (uzytkownik_id, adres_id, platnosc, status, kurier_id, data_czas_zamowienia, suma, uwagi)
+                       VALUES ($uzytkownik_id, $adres_id, '$platnosc', '$status', $kurier_id, '$data', $suma, '$uwagi')");
+    $zamowienie_id = mysqli_insert_id($db);
+
+    foreach ($produkty as $p) {
+        mysqli_query($db, "INSERT INTO szczegoly_zamowienia (produkt_id, zamowienie_id, ilosc_produktu, suma)
+                           VALUES ({$p['id']}, $zamowienie_id, {$p['ilosc']}, {$p['suma']})");
+    }
+
+    setcookie('koszyk', '', time() - 3600, '/');
+
+    echo "<h2>Zamówienie złożone!</h2>";
+    echo "<p>Kwota do zapłaty: <b>" . number_format($suma, 2, ',', ' ') . " zł</b></p>";
+    echo "<p><a href='index.php'>Powrót do sklepu</a></p>";
+} else {
+    echo "Nieprawidłowe dane formularza.";
 }
 ?>
 
@@ -35,13 +89,6 @@ if (isset($_COOKIE['koszyk']) && !empty($_COOKIE['koszyk'])) {
     <title>Koszyk</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style/styl.css">
-    <script src="script.js"></script>
-    <style>
-        input[type="number"] {
-            width: 50px;
-            text-align: center;
-        }
-    </style>
 </head>
 
 <body>
@@ -49,18 +96,11 @@ if (isset($_COOKIE['koszyk']) && !empty($_COOKIE['koszyk'])) {
         <a href="index.php">
             <h1 class="noMargin">Sklep ogrodniczy</h1>
         </a>
+        <div class="hOptions">
+            <a href="products.php">Sklep</a>
+            <a href="cart.php" id="userCart">🛒 Koszyk</a>
         </div>
         <div class="buttonContainer">
-            <a href="products.php">
-                <button class="iconButton">
-                    <img src="./icons/products.svg" alt="Produkty" style="width:48px; height:48px; vertical-align:middle;">
-                </button>
-            </a>
-            <a href="cart.php">
-                <button class="iconButton">
-                    <img src="./icons/cart.svg" alt="Koszyk" style="width:48px; height:48px; vertical-align:middle;">
-                </button> 
-            </a>
             <a href="login.php">
                 <button class="iconButton">
                     <img src="./icons/account.svg" alt="Konto" style="width:48px; height:48px; vertical-align:middle;">
@@ -75,38 +115,49 @@ if (isset($_COOKIE['koszyk']) && !empty($_COOKIE['koszyk'])) {
         <?php if (empty($products)): ?>
             <p>Koszyk jest pusty.</p>
         <?php else: ?>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Zdjęcie</th>
-                        <th>Nazwa produktu</th>
-                        <th>Cena</th>
-                        <th>Ilość</th>
-                        <th>Wartość</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($products as $product): ?>
-                        <?php
-                        $id = $product['id'];
-                        $qty = $quantities[$id] ?? 1;
-                        $price = $product['cena'];
-                        $value = $qty * $price;
-                        ?>
+            <form action="order.php" method="post" onsubmit="return confirm('Czy na pewno chcesz złożyć zamówienie?');">
+                <table>
+                    <thead>
                         <tr>
-                            <td> <img src="./images/<?php echo $product['zdjecie']; ?>" alt="produkt" max-width="200px" max-height="200px">
-                            </td>
-                            <td><?= htmlspecialchars($product['nazwa']) ?></td>
-                            <td id="price<?= $id ?>"><?= number_format($price, 2, '.', '') ?></td>
-                            <td>
-                                <input type="number" id="count<?= $id ?>" value="<?= $qty ?>" min="0" onchange="changeValue(<?= $id ?>)">
-                            </td>
-                            <td id="value<?= $id ?>"><?= number_format($value, 2, '.', '') ?></td>
+                            <th>Zdjęcie</th>
+                            <th>Nazwa produktu</th>
+                            <th>Cena</th>
+                            <th>Ilość</th>
+                            <th>Wartość</th>
                         </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-            <p>Suma: <span id="cartSum">0.00</span> PLN</p>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($products as $product): ?>
+                            <?php
+                            $id = $product['id'];
+                            $qty = $quantities[$id] ?? 1;
+                            $price = $product['cena'];
+                            $value = $qty * $price;
+                            ?>
+                            <tr>
+                                <td><img src="./images/<?= $product['zdjecie'] ?>" alt="produkt"></td>
+                                <td><?= htmlspecialchars($product['nazwa']) ?></td>
+                                <td><?= number_format($price, 2, '.', '') ?> zł</td>
+                                <td>
+                                    <input type="hidden" name="produkt_id[]" value="<?= $id ?>">
+                                    <input type="number" name="ilosc[]" value="<?= $qty ?>" min="0">
+                                </td>
+                                <td><?= number_format($value, 2, '.', '') ?> zł</td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+                <br>
+                <button type="submit">Zamów i zapłać</button>
+                <h3>Dane do wysyłki</h3>
+                <label>Państwo: <input type="text" name="panstwo" required></label><br>
+                <label>Miasto: <input type="text" name="miasto" required></label><br>
+                <label>Ulica: <input type="text" name="ulica" required></label><br>
+                <label>Nr domu: <input type="text" name="numer_domu" required></label><br>
+                <label>Nr mieszkania: <input type="text" name="numer_mieszkania" required></label><br>
+                <label>Kod pocztowy: <input type="text" name="kod_pocztowy" pattern="\d{2}-?\d{3}" required></label><br><br>
+
+            </form>
         <?php endif; ?>
     </main>
 
@@ -115,13 +166,6 @@ if (isset($_COOKIE['koszyk']) && !empty($_COOKIE['koszyk'])) {
             Autorzy: <b>Ryszard Osiński</b>, <b>Mirosław Karpowicz</b>, <b>Szymon Linek</b>, <b>Krystian Kotowski</b>
         </div>
     </footer>
-
-    <script>
-        window.onload = function() {
-            updateCart();
-            setCartSum();
-        };
-    </script>
 </body>
 
 </html>
