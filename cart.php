@@ -91,7 +91,7 @@ if (isset($_COOKIE['koszyk']) && $_COOKIE['koszyk'] !== '') {
                             $value = $qty * $price;
                             ?>
                             <tr>
-                                <td><img src="./images/<?= $product['url_zdjecia'] ?? 'placeholder.png' ?>" alt="produkt"></td>
+                                <td><img src="./images/<?= $product['url_zdjecia'] ?? 'placeholder.png' ?>" alt="produkt" width="300" high="300"></td>
                                 <td><?= htmlspecialchars($product['nazwa']) ?></td>
                                 <td><?= number_format($price, 2, '.', '') ?> zł</td>
                                 <td>
