@@ -1,5 +1,5 @@
 <?php
-require 'db.php';
+require './db.php';
 
 $id = $_GET['id'];
 
@@ -21,8 +21,6 @@ $product = mysqli_fetch_assoc($result);
     <meta charset="UTF-8">
     <title><?php echo $product['nazwa']; ?></title>
     <link rel="stylesheet" href="./style/styl.css">
-    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-    <script src="script.js"></script>
 </head>
 
 <body>
@@ -38,8 +36,8 @@ $product = mysqli_fetch_assoc($result);
             </a>
             <a href="cart.php">
                 <button class="iconButton">
-                    <img src="./icons/cart.svg" alt="Produkty" style="width:48px; height:48px; vertical-align:middle;">
-                </button>
+                    <img src="./icons/cart.svg" alt="Koszyk" style="width:48px; height:48px; vertical-align:middle;">
+                </button> 
             </a>
             <a href="login.php" >
                 <button class="iconButton">
@@ -50,33 +48,24 @@ $product = mysqli_fetch_assoc($result);
     </header>
     <main>
         <div class="details">
-            <div class="imagesView">
-                <div class="productName">
-                    <h2><?php echo $product['nazwa']; ?></h2>
-                </div>
-                <div class="imagesView">
-                    <model-viewer
-                        src="./models/<?php echo $product['model']; ?>"
-                        alt="Model 3D produktu"
-                        auto-rotate
-                        camera-controls
-                        background-color="#ffffff"
-                        style="width: 400px; height: 400px;">
-                    </model-viewer>
-                </div>
-                <div class="description">
-                    <p><strong>Opis:</strong> <?php echo $product['opis']; ?></p>
-                    <p><strong>Cena:</strong> <?php echo $product['cena']; ?> zł</p>
-                    <p><strong>Ilość dostępnych w magazynie:</strong> <?php echo $product['ilosc']; ?></p>
-                </div>
-                <button onclick="addToCart(<?php echo $product['id']; ?>)">Dodaj do Koszyka</button>
+            <div class="imagesView"><img src="./images/<?php echo $product['url_zdjecia'] ? $product['url_zdjecia'] : 'placeholder.png'; ?>" alt="zdjęcie"></div>
+            <div class="description">
+                <p><strong>Opis:</strong> <?php echo $product['opis']; ?></p>
+                <p><strong>Cena:</strong> <?php echo $product['cena']; ?> zł</p>
+                <p><strong>Ilość:</strong> <?php echo $product['ilosc']; ?></p>
             </div>
+                <div class="productName"><h2><?php echo $product['nazwa']; ?></h2></div>
+                <div class="buyButton">
+                    <button onclick="addToCart(<?php echo $product['id']; ?>); return false;">Dodaj do Koszyka</button>
+                </div>
+        </div>
     </main>
     <footer>
         <div class="noMargin">
             Autorzy: <b>Ryszard Osiński</b>, <b>Mirosław Karpowicz</b>, <b>Szymon Linek</b>, <b>Krystian Kotowski</b>
         </div>
     </footer>
+    <script src="script.js"></script>
 </body>
 
 </html>
