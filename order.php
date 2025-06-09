@@ -1,27 +1,36 @@
 <?php
 session_start();
-require 'db.php';
+
 
 if (!isset($_SESSION['userID'])) {
     echo "Musisz być zalogowany, aby złożyć zamówienie.";
     exit;
 }
+require './db.php';
 
 $uzytkownik_id = $_SESSION['userID'];
 
 $adres_result = mysqli_query($db, "SELECT id FROM adres WHERE uzytkownik_id = $uzytkownik_id LIMIT 1");
 $adres_row = mysqli_fetch_assoc($adres_result);
-if (!$adres_row) {
-    echo "Nie masz przypisanego adresu. Uzupełnij dane w swoim profilu.";
-    echo "<p><a href='user/account.php'>Przejdź do profilu</a></p>";
-    exit;
-}
+$adres_id = $adres_row ? $adres_row['id'] : null;
 
-$adres_id = $adres_row['id'];
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['produkt_id'], $_POST['ilosc'])) {
+if (
+    $_SERVER['REQUEST_METHOD'] === 'POST' &&
+    isset($_POST['produkt_id'], $_POST['ilosc'], $_POST['panstwo'], $_POST['miasto'], $_POST['ulica'], $_POST['numer_domu'], $_POST['numer_mieszkania'], $_POST['kod_pocztowy'])
+) {
     $produkt_ids = $_POST['produkt_id'];
     $ilosci = $_POST['ilosc'];
+
+    $panstwo = mysqli_real_escape_string($db, $_POST['panstwo']);
+    $miasto = mysqli_real_escape_string($db, $_POST['miasto']);
+    $ulica = mysqli_real_escape_string($db, $_POST['ulica']);
+    $numer_domu = mysqli_real_escape_string($db, $_POST['numer_domu']);
+    $numer_mieszkania = mysqli_real_escape_string($db, $_POST['numer_mieszkania']);
+    $kod_pocztowy = mysqli_real_escape_string($db, $_POST['kod_pocztowy']);
+
+    $adres_sql = "INSERT INTO adres (panstwo, miasto, ulica, numer_domu, numer_mieszkania, kod_pocztowy, uzytkownik_id) VALUES ('$panstwo', '$miasto', '$ulica', '$numer_domu', '$numer_mieszkania', '$kod_pocztowy', $uzytkownik_id)";
+    mysqli_query($db, $adres_sql);
+    $adres_id = mysqli_insert_id($db);
 
     $suma = 0;
     $produkty = [];
@@ -55,12 +64,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['produkt_id'], $_POST[
 
     $data = date("Y-m-d H:i:s");
     $platnosc = 'gotówka';
-    $status = 'przyjęnte';
+    $status = 'przyjęte';
     $uwagi = 'Brak uwag';
-    $kurier_id = 1;
 
     $sql = "INSERT INTO zamowienie (uzytkownik_id, adres_id, platnosc, status, kurier_id, data_czas_zamowienia, suma, uwagi)
-            VALUES ($uzytkownik_id, $adres_id, '$platnosc', '$status', $kurier_id, '$data', $suma, '$uwagi')";
+            VALUES ($uzytkownik_id, $adres_id, '$platnosc', '$status', NULL, '$data', $suma, '$uwagi')";
     mysqli_query($db, $sql);
     $zamowienie_id = mysqli_insert_id($db);
 
