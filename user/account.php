@@ -72,6 +72,7 @@ while ($order = mysqli_fetch_assoc($resOrders)) {
     <link rel="stylesheet" href="../style/account.css">
 </head>
 <body>
+<!-- stara wiersja
     <header>
         <a href="../index.php"><h1 class="noMargin">Sklep ogrodniczy</h1></a>
         <div class="hOptions">
@@ -86,6 +87,30 @@ while ($order = mysqli_fetch_assoc($resOrders)) {
             </a>
         </div>
     </header>
+    -->
+    <header>
+        <a href="index.php">
+            <h1 class="noMargin">Sklep ogrodniczy</h1>
+        </a>
+        <div class="buttonContainer">
+            <a href="../products.php">
+                <button class="iconButton">
+                    <img src="../icons/products.svg" alt="Produkty" style="width:48px; height:48px; vertical-align:middle;">
+                </button>
+            </a>
+            <a href="../cart.php">
+                <button class="iconButton">
+                    <img src="../icons/cart.svg" alt="Koszyk" style="width:48px; height:48px; vertical-align:middle;">
+                </button> 
+            </a>
+            <a href="../login.php">
+                <button class="iconButton">
+                    <img src="../icons/account.svg" alt="Konto" style="width:48px; height:48px; vertical-align:middle;">
+                </button>
+            </a>
+        </div>
+    </header>
+    
     <main>
         <h1 class="accountTitle">Moje konto</h1>
         <div class="accountPanel">
