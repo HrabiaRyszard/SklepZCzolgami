@@ -119,7 +119,7 @@ main{
     line-height: 1.5;
     padding: 20px;
 }
-.buyButton>a>button{
+.buyButton>button{
     height: 100px;
     width: 400px;
     font-size: 30px;
