@@ -3,6 +3,7 @@ window.onload = function () {
 };
 
 function addToCart(id) {
+    alert('dodane');
     var cookie = getCookie('koszyk');
 
     var cookiesValues = id;
