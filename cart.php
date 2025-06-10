@@ -1,11 +1,12 @@
 <?php
 session_start();
-require './db.php';
+
 
 if (!isset($_SESSION['userID'])) {
     echo "Musisz być zalogowany, aby zobaczyć koszyk.";
     exit;
 }
+require './db.php';
 
 $uzytkownik_id = $_SESSION['userID'];
 
