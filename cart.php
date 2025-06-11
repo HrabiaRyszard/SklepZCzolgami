@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-
 if (!isset($_SESSION['userID'])) {
     echo "Musisz być zalogowany, aby zobaczyć koszyk.";
     exit;
