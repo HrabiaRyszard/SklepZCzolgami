@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'db.php';
+require './db.php';
 
 if (isset($_SESSION['role'])) {
     if($_SESSION['role'] === 'user') {
