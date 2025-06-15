@@ -46,39 +46,37 @@ $images = glob('../images/*.jpg');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sklep Ogrodniczy</title>
-    <link rel="stylesheet" href="./style/adminstyl.css">
+    <link rel="stylesheet" href="../style/adminstyl.css">
 </head>
 
 <body>
     <header>
-        <a href="index.php">
+        <a href="../index.php">
             <h1 class="noMargin">Sklep ogrodniczy</h1>
         </a>
-        <div class="hOptions">
-            <a href="products.php">Sklep</a>
-            <a href="cart.php">Koszyk</a>
-        </div>
         <div class="buttonContainer">
-            <a href="login.php"><button>Logowanie</button></a>
-            <a href="register.php"><button>Rejestracja</button></a>
+            <a href="../admin/adminPanel.php">
+                <button class="iconButton">
+                    <img src="../icons/close.svg" alt="Index" style="width:48px; height:48px; vertical-align:middle;">
+                </button>
+            </a>
         </div>
     </header>
     <main>
-        <div>
-            <h1>Modyfikuj produkt</h1>
-
-            <form method="post">
+        <div class="center">
+            <form method="post" class="adminForm">
+                <h1 class="noMargin">Modyfikuj produkt</h1>
                 <label>Nazwa:<br>
                     <input type="text" name="nazwa" value="<?php echo $produkt['nazwa']; ?>" required>
-                </label><br><br>
+                </label>
 
                 <label>Opis:<br>
                     <textarea name="opis" required><?php echo $produkt['opis']; ?></textarea>
-                </label><br><br>
+                </label>
 
                 <label>Cena:<br>
                     <input type="number" name="cena" step="0.01" value="<?php echo $produkt['cena']; ?>" required>
-                </label><br><br>
+                </label>
 
                 <label>Kategoria:<br>
                     <select name="kategoria_id">
@@ -89,7 +87,7 @@ $images = glob('../images/*.jpg');
                             </option>
                         <?php } ?>
                     </select>
-                </label><br><br>
+                </label>
                 <label>Zdjęcie:<br />
                     <select id="image" name="image" required>
                         <option value="">Brak zdjęcia</option>
@@ -101,17 +99,14 @@ $images = glob('../images/*.jpg');
                         }
                         ?>
                     </select>
-                </label><br /><br />
+                </label>
                 <button type="submit">Zapisz zmiany</button>
                 <a href="adminPanel.php"><button type="button">Anuluj</button></a>
             </form>
-
         </div>
     </main>
     <footer>
-        <div class="noMargin">
-            Autorzy: <b>Ryszard Osiński</b>, <b>Mirosław Karpowicz</b>, <b>Szymon Linek</b>, <b>Krystian Kotowski</b>
-        </div>
+        Autorzy: <b>Ryszard Osiński</b>, <b>Mirosław Karpowicz</b>, <b>Szymon Linek</b>, <b>Krystian Kotowski</b>
     </footer>
 </body>
 

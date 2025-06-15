@@ -30,37 +30,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sklep Ogrodniczy</title>
-    <link rel="stylesheet" href="../style/styl.css">
+    <link rel="stylesheet" href="../style/adminstyl.css">
 </head>
 
 <body>
     <header>
-        <a href="index.php">
+        <a href="../index.php">
             <h1 class="noMargin">Sklep ogrodniczy</h1>
         </a>
         <div class="buttonContainer">
-            <a href="../products.php">
+            <a href="../admin/adminPanel.php">
                 <button class="iconButton">
-                    <img src="../icons/products.svg" alt="Produkty" style="width:48px; height:48px; vertical-align:middle;">
-                </button>
-            </a>
-            <a href="../cart.php">
-                <button class="iconButton">
-                    <img src="../icons/cart.svg" alt="Produkty" style="width:48px; height:48px; vertical-align:middle;">
-                </button>
-            </a>
-            <a href="../login.php">
-                <button class="iconButton">
-                    <img src="../icons/account.svg" alt="Konto" style="width:48px; height:48px; vertical-align:middle;">
+                    <img src="../icons/close.svg" alt="Index" style="width:48px; height:48px; vertical-align:middle;">
                 </button>
             </a>
         </div>
     </header>
-
     <main>
         <div class="center">
-            <div class="userForm">
-                <h2>Zarejestruj pracownika</h2>
+            <div class="adminForm">
+                <h2 class="noMargin">Zarejestruj pracownika</h2>
                 <form action="#" method="POST">
                     <input type="text" name="imie" placeholder="Imie" required>
                     <input type="text" name="nazwisko" placeholder="Nazwisko" required>
@@ -72,11 +61,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
     </main>
-
     <footer>
-        <div class="noMargin">
-            Autorzy: <b>Ryszard Osiński</b>, <b>Mirosław Karpowicz</b>, <b>Szymon Linek</b>, <b>Krystian Kotowski</b>
-        </div>
+        Autorzy: <b>Ryszard Osiński</b>, <b>Mirosław Karpowicz</b>, <b>Szymon Linek</b>, <b>Krystian Kotowski</b>
     </footer>
 </body>
 
