@@ -10,7 +10,7 @@ require './db.php';
 
 $uzytkownik_id = $_SESSION['userID'];
 
-$adres_result = mysqli_query($db, "SELECT id FROM adres WHERE uzytkownik_id = $uzytkownik_id LIMIT 1");
+$adres_result = mysqli_query($db, "SELECT * FROM adres WHERE uzytkownik_id = $uzytkownik_id LIMIT 1");
 $adres_row = mysqli_fetch_assoc($adres_result);
 $adres_id = $adres_row ? $adres_row['id'] : null;
 
@@ -28,9 +28,26 @@ if (
     $numer_mieszkania = mysqli_real_escape_string($db, $_POST['numer_mieszkania']);
     $kod_pocztowy = mysqli_real_escape_string($db, $_POST['kod_pocztowy']);
 
-    $adres_sql = "INSERT INTO adres (panstwo, miasto, ulica, numer_domu, numer_mieszkania, kod_pocztowy, uzytkownik_id) VALUES ('$panstwo', '$miasto', '$ulica', '$numer_domu', '$numer_mieszkania', '$kod_pocztowy', $uzytkownik_id)";
-    mysqli_query($db, $adres_sql);
-    $adres_id = mysqli_insert_id($db);
+    $adres_changed = !$adres_row ||
+        $adres_row['panstwo'] !== $panstwo ||
+        $adres_row['miasto'] !== $miasto ||
+        $adres_row['ulica'] !== $ulica ||
+        $adres_row['numer_domu'] !== $numer_domu ||
+        $adres_row['numer_mieszkania'] !== $numer_mieszkania ||
+        $adres_row['kod_pocztowy'] !== $kod_pocztowy;
+
+    if ($adres_changed) {
+        if ($adres_row) {
+
+            $adres_sql = "UPDATE adres SET panstwo='$panstwo', miasto='$miasto', ulica='$ulica', numer_domu='$numer_domu', numer_mieszkania='$numer_mieszkania', kod_pocztowy='$kod_pocztowy' WHERE id=$adres_id";
+            mysqli_query($db, $adres_sql);
+        } else {
+
+            $adres_sql = "INSERT INTO adres (panstwo, miasto, ulica, numer_domu, numer_mieszkania, kod_pocztowy, uzytkownik_id) VALUES ('$panstwo', '$miasto', '$ulica', '$numer_domu', '$numer_mieszkania', '$kod_pocztowy', $uzytkownik_id)";
+            mysqli_query($db, $adres_sql);
+            $adres_id = mysqli_insert_id($db);
+        }
+    }
 
     $suma = 0;
     $produkty = [];

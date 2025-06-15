@@ -3,7 +3,7 @@ window.onload = () => {
 };
 
 function addToCart(id) {
-    alert('dodane');
+    alert('Dodano do koszyka');
     var cookie = getCookie('koszyk');
 
     var cookiesValues = id;

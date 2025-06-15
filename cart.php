@@ -9,6 +9,15 @@ require './db.php';
 
 $uzytkownik_id = $_SESSION['userID'];
 
+$adres_result = mysqli_query($db, "SELECT * FROM adres WHERE uzytkownik_id = $uzytkownik_id LIMIT 1");
+$adres_row = mysqli_fetch_assoc($adres_result);
+$adres_panstwo = $adres_row['panstwo'] ?? '';
+$adres_miasto = $adres_row['miasto'] ?? '';
+$adres_ulica = $adres_row['ulica'] ?? '';
+$adres_numer_domu = $adres_row['numer_domu'] ?? '';
+$adres_numer_mieszkania = $adres_row['numer_mieszkania'] ?? '';
+$adres_kod_pocztowy = $adres_row['kod_pocztowy'] ?? '';
+
 $products = [];
 $quantities = [];
 if (isset($_COOKIE['koszyk']) && $_COOKIE['koszyk'] !== '') {
@@ -106,15 +115,15 @@ if (isset($_COOKIE['koszyk']) && $_COOKIE['koszyk'] !== '') {
                         <?php endforeach; ?>
                     </tbody>
                 </table>
-                <br>
-                <button type="submit">Zamów i zapłać</button>
+                
                 <h3>Dane do wysyłki</h3>
-                <label>Państwo: <input type="text" name="panstwo" required></label><br>
-                <label>Miasto: <input type="text" name="miasto" required></label><br>
-                <label>Ulica: <input type="text" name="ulica" required></label><br>
-                <label>Nr domu: <input type="text" name="numer_domu" required></label><br>
-                <label>Nr mieszkania: <input type="text" name="numer_mieszkania" required></label><br>
-                <label>Kod pocztowy: <input type="text" name="kod_pocztowy" pattern="\d{2}-?\d{3}" required></label><br><br>
+                <label>Państwo: <input type="text" name="panstwo" required value="<?= htmlspecialchars($adres_panstwo) ?>"></label><br>
+                <label>Miasto: <input type="text" name="miasto" required value="<?= htmlspecialchars($adres_miasto) ?>"></label><br>
+                <label>Ulica: <input type="text" name="ulica" required value="<?= htmlspecialchars($adres_ulica) ?>"></label><br>
+                <label>Nr domu: <input type="text" name="numer_domu" required value="<?= htmlspecialchars($adres_numer_domu) ?>"></label><br>
+                <label>Nr mieszkania: <input type="text" name="numer_mieszkania" required value="<?= htmlspecialchars($adres_numer_mieszkania) ?>"></label><br>
+                <label>Kod pocztowy: <input type="text" name="kod_pocztowy" pattern="\d{2}-?\d{3}" required value="<?= htmlspecialchars($adres_kod_pocztowy) ?>"></label><br><br>
+                <button type="submit">Zamów i zapłać</button>
             </form>
         <?php endif; ?>
     </main>
