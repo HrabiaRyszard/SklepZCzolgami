@@ -38,7 +38,6 @@
                 <a href="manageCategories.php"><button>Zarządzaj kategoriami</button></a>
                 <a href="viewOrders.php"><button>Przeglądaj zamówienia</button></a>
                 <a href="manageUsers.php"><button>Zarządzaj użytkownikami</button></a>
-                <a href="settings.php"><button>Ustawienia sklepu</button></a>
             </div>
         </div>
     </main>
