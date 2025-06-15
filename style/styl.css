@@ -2,6 +2,7 @@ body{
     margin: 0;
     height: 100%;
     background-color: #184600;
+    font-family: 'Segoe UI', sans-serif;
 }
 header{
     background-color: #184600;
@@ -15,18 +16,6 @@ header h1{
 }
 .noMargin{
     margin: 0;
-}
-.hOptions{
-    text-align: center;
-}
-.hOptions>a{
-    border: 1px solid white;
-    padding: 15px;
-    background-color: #143a00;
-    font-size: x-large;
-    border-radius: 5px;
-    margin: 0;
-    color: white;
 }
 .buttonContainer{
     position: absolute;
@@ -69,6 +58,7 @@ main{
     padding: 20px;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 .productContainer{
     border: 2px solid black;
@@ -81,6 +71,11 @@ main{
 .productContainer>img{
     padding: 20px;
     height: 250px;
+}
+.productContainer:hover{
+    transform: scale(1.01);
+    transition: transform 0.2s ease;
+
 }
 .productContainer>h2{
     margin: 0;
@@ -126,6 +121,12 @@ main{
     font-weight: bolder;
     border-radius: 0;
     background-color: yellow;
+    border-radius: 10px;
+}
+.buyButton>button:hover{
+    background-color: rgba(245, 245, 6, 0.979);
+    transform: scale(1.02);
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 .imagesView{
     background-color: white;
@@ -222,4 +223,116 @@ main{
     border-radius: 5px;
     font-size: 16px;
     margin-top: 5px;
+}
+
+.cartTable {
+    width: 80%;
+    text-align: center;
+    margin: 20px auto;
+    border-collapse: collapse;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    background-color: #f1ffe2;
+    
+}
+.cartTable th,
+.cartTable td {
+    box-shadow: #143a00 0px 0px 1px;
+    border: 1px solid #143a00;
+    padding: 10px;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 18px;
+    color: #143a00;
+}
+.delButton {
+    background-color: #336633;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.checkout-btn{
+    display: inline-block;
+    padding: 12px 32px;
+    background: #336633;
+    color: #fff;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 18px;
+    margin: 15px;
+}
+.qtyButton {
+    background-color: #e0e0e0;
+    border: 1px solid #888;
+    border-radius: 4px;
+    width: 32px;
+    height: 32px;
+    font-size: 20px;
+    margin: 0 4px;
+    cursor: pointer;
+}
+.cartQty {
+    min-width: 24px;
+    display: inline-block;
+    font-weight: bold;
+}
+.checkout-step { 
+    margin: 30px auto; 
+    max-width: 900px; 
+    background: #fff; 
+    padding: 30px; 
+    border-radius: 8px; 
+}
+.checkout-header { 
+    display: flex; 
+    justify-content: space-between; 
+    margin-bottom: 30px; 
+}
+.checkout-header .step { 
+    flex: 1; 
+    text-align: center; 
+}
+.checkout-header .active {
+     font-weight: bold; 
+     color: #336633; 
+}
+.checkout-box { 
+    display: flex; 
+    gap: 30px; 
+}
+.checkout-box > div { 
+    flex: 1;
+}
+.summary-table { 
+    width: 100%; 
+    border-collapse: collapse;
+    text-align: center;
+    margin: 20px auto;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+.summary-table th, .summary-table td { 
+    box-shadow: #143a00 0px 0px 1px;
+    border: 1px solid #143a00;
+    padding: 10px;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 18px;
+}
+.summary-table th { 
+    background: #f8f8f8; 
+}
+.summary-total { 
+    font-weight: bold; 
+    color: #336633; 
+}
+.checkout-btn { 
+    background: #336633; 
+    color: #fff; 
+    border: none; 
+    padding: 12px 32px; 
+    font-size: 18px; 
+    border-radius: 4px; 
+    cursor: pointer; 
+}
+.checkout-btn:disabled { 
+    background: #ccc; 
 }

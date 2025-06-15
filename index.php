@@ -29,7 +29,9 @@
     </header>
     <main>
         <div>
-            
+            <h1>Coś tu trzeba dać</h1>
+            <h2>Może jakiś polecany produkt</h2>
+            <h3>Lub coś takiego</h3>
         </div>
     </main>
     <footer>

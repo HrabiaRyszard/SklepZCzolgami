@@ -21,11 +21,6 @@ while ($row = mysqli_fetch_assoc($result)) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sklep Ogrodniczy</title>
     <link rel="stylesheet" href="./style/styl.css">
-    <style>
-        .filters { margin: 20px 0; display: flex; gap: 20px; justify-content: center; }
-        .filters label { font-weight: bold; }
-        .productPanel { justify-content: center; }
-    </style>
 </head>
 <body>
     <header>

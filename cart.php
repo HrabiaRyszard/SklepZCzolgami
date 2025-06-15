@@ -58,13 +58,13 @@ if (isset($_COOKIE['koszyk']) && $_COOKIE['koszyk'] !== '') {
     </header>
 
     <main>
-        <h2>Twój koszyk</h2>
+        <h2 style="padding: 10px; margin-top: 10px">Twój koszyk</h2>
 
         <?php if (empty($products)): ?>
             <p>Koszyk jest pusty.</p>
         <?php else: ?>
             <form>
-                <table>
+                <table class="cartTable">
                     <thead>
                         <tr>
                             <th>Zdjęcie</th>
@@ -87,17 +87,21 @@ if (isset($_COOKIE['koszyk']) && $_COOKIE['koszyk'] !== '') {
                                 <td><img src="./images/<?= $product['url_zdjecia'] ?? 'placeholder.png' ?>" alt="produkt" width="100" height="100"></td>
                                 <td><?= htmlspecialchars($product['nazwa']) ?></td>
                                 <td><?= number_format($price, 2, '.', '') ?> zł</td>
-                                <td><?= $qty ?></td>
+                                <td>
+                                    <button class="qtyButton" type="button" onclick="changeQuantity(<?= $id ?>, -1)">-</button>
+                                    <span class="cartQty"><?= $qty ?></span>
+                                    <button class="qtyButton" type="button" onclick="changeQuantity(<?= $id ?>, 1)">+</button>
+                                </td>
                                 <td><?= number_format($value, 2, '.', '') ?> zł</td>
                                 <td>
-                                    <button type="button" onclick="removeFromCart(<?= $id ?>)">Usuń</button>
+                                    <button class="delButton" type="button" onclick="removeFromCart(<?= $id ?>)">Usuń</button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
                 <br>
-                <a href="checkout.php" class="checkout-btn" style="display:inline-block;padding:12px 32px;background:#336633;color:#fff;border-radius:4px;text-decoration:none;font-size:18px;">PRZEJDŹ DO KASY</a>
+                <a href="checkout.php" class="checkout-btn">PRZEJDŹ DO KASY</a>
             </form>
         <?php endif; ?>
     </main>
@@ -118,6 +122,26 @@ if (isset($_COOKIE['koszyk']) && $_COOKIE['koszyk'] !== '') {
         var expires = new Date();
         expires.setFullYear(expires.getFullYear() + 1);
         document.cookie = 'koszyk=' + ids.join(',') + '; expires=' + expires.toUTCString() + '; path=/';
+        location.reload();
+    }
+
+    function changeQuantity(id, delta) {
+        var cookie = document.cookie.split('; ').find(row => row.startsWith('koszyk='));
+        if (!cookie) return;
+        var value = decodeURIComponent(cookie.split('=')[1]);
+        var ids = value.split(',');
+        var newIds = [];
+        var count = 0;
+        ids.forEach(function(item) {
+            if (item == id) count++;
+            else newIds.push(item);
+        });
+        count += delta;
+        if (count < 1) count = 1;
+        for (var i = 0; i < count; i++) newIds.push(id);
+        var expires = new Date();
+        expires.setFullYear(expires.getFullYear() + 1);
+        document.cookie = 'koszyk=' + newIds.join(',') + '; expires=' + expires.toUTCString() + '; path=/';
         location.reload();
     }
     </script>

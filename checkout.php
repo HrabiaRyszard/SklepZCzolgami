@@ -167,20 +167,6 @@ if (isset($_SESSION['userID'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout - Sklep Ogrodniczy</title>
     <link rel="stylesheet" href="./style/styl.css">
-    <style>
-        .checkout-step { margin: 30px auto; max-width: 900px; background: #fff; padding: 30px; border-radius: 8px; }
-        .checkout-header { display: flex; justify-content: space-between; margin-bottom: 30px; }
-        .checkout-header .step { flex: 1; text-align: center; }
-        .checkout-header .active { font-weight: bold; color: #336633; }
-        .checkout-box { display: flex; gap: 30px; }
-        .checkout-box > div { flex: 1; }
-        .summary-table { width: 100%; border-collapse: collapse; }
-        .summary-table th, .summary-table td { border-bottom: 1px solid #eee; padding: 8px; }
-        .summary-table th { background: #f8f8f8; }
-        .summary-total { font-weight: bold; color: #336633; }
-        .checkout-btn { background: #336633; color: #fff; border: none; padding: 12px 32px; font-size: 18px; border-radius: 4px; cursor: pointer; }
-        .checkout-btn:disabled { background: #ccc; }
-    </style>
 </head>
 <body>
     <header>
