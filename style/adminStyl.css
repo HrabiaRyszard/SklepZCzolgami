@@ -1,0 +1,103 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #ffe8ce;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #b45700;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 3rem;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Black', sans-serif;
+}
+
+.buttonContainer {
+    display: flex;
+    gap: 1rem;
+}
+
+.iconButton {
+    background-color: orangered;
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.iconButton:hover {
+    background-color: #ff5c00;
+}
+
+.iconButton img {
+    width: 48px;
+    height: 48px;
+}
+
+main {
+    flex-grow: 1;
+    padding: 2rem;
+    text-align: center;
+}
+
+main h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.operationsPanel {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    justify-items: center;
+}
+
+.operationsPanel a {
+    width: 100%;
+    text-decoration: none;
+}
+
+.operationsPanel button {
+    background-color: orangered;
+    border: none;
+    border-radius: 12px;
+    color: white;
+    padding: 1rem;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.operationsPanel button:hover {
+    background-color: #ff5c00;
+}
+
+footer {
+    background-color: #b45700;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.95rem;
+    margin-top: auto;
+}

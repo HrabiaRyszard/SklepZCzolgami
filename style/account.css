@@ -1,0 +1,159 @@
+.accountTitle {
+    margin-top: 30px;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 700;
+    color: #336633;
+}
+
+.accountPanel {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.accountSection {
+    background: #f8f8f8;
+    border-radius: 10px;
+    padding: 24px 32px;
+    margin: 20px 0;
+    min-width: 320px;
+    max-width: 420px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    flex: 1 1 340px;
+    transition: box-shadow 0.3s ease;
+}
+
+.accountSection:hover {
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 1200px) {
+    .accountPanel {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .accountSection {
+        max-width: 95vw;
+    }
+}
+
+.accountForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.accountForm label {
+    font-weight: bold;
+    margin-bottom: 4px;
+    color: #333;
+}
+
+.accountForm input {
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: 1px solid #bbb;
+    font-size: 1em;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.accountForm input:focus {
+    border-color: #336633;
+    box-shadow: 0 0 6px rgba(51, 102, 51, 0.5);
+    outline: none;
+}
+
+.accountButton {
+    background: #336633;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 0;
+    font-size: 1em;
+    margin-top: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.accountButton:hover {
+    background: #285428;
+}
+
+.accountActions {
+    display: flex;
+    gap: 16px;
+    margin-top: 10px;
+}
+
+.logoutButton,
+.deleteButton {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    transition: background 0.3s;
+    user-select: none;
+}
+
+.logoutButton {
+    background: #2196f3;
+}
+
+.logoutButton:hover {
+    background: #1565c0;
+}
+
+.deleteButton {
+    background: #f44336;
+}
+
+.deleteButton:hover {
+    background: #b71c1c;
+}
+
+.orderHistory {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.orderBox {
+    background: #fff;
+    border-radius: 8px;
+    padding: 16px 20px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+    transition: box-shadow 0.3s;
+}
+
+.orderBox:hover {
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+}
+
+.orderBox ul {
+    margin: 8px 0 0 20px;
+    padding-left: 0;
+}
+
+.authError {
+    color: #d32f2f;
+    font-size: 0.95em;
+    margin-top: 4px;
+}
+
+footer {
+    clear: both;
+    bottom: 0;
+    height: 7.5vh;
+    width: 100%;
+    text-align: center;
+    background-color: #184600;
+    line-height: 7.5vh;
+    color: white;
+}
