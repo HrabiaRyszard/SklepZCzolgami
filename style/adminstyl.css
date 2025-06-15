@@ -1,103 +1,154 @@
-* {
-    box-sizing: border-box;
-}
-
-body {
+body{
     margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #ffe8ce;
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-header {
+    height: 100%;
     background-color: #b45700;
-    padding: 1rem 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-
-header h1 {
-    margin: 0;
-    font-size: 3rem;
+header{
+    background-color: #b45700;
+    line-height: 8vh;
+    text-align: center;
+    height: 15vh;
+}
+header h1{
     color: white;
-    font-family: 'Franklin Gothic Medium', 'Arial Black', sans-serif;
 }
-
-.buttonContainer {
-    display: flex;
-    gap: 1rem;
+.noMargin{
+    margin: 0;
 }
-
-.iconButton {
-    background-color: orangered;
-    border: none;
-    border-radius: 8px;
-    padding: 0.5rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.iconButton:hover {
-    background-color: #ff5c00;
-}
-
-.iconButton img {
-    width: 48px;
-    height: 48px;
-}
-
-main {
-    flex-grow: 1;
-    padding: 2rem;
+.hOptions{
     text-align: center;
 }
-
-main h2 {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
+.hOptions>a{
+    border: 1px solid black;
+    padding: 15px;
+    background-color: #ff7300;
+    font-size: x-large;
+    margin: 0;
 }
-
-.operationsPanel {
-    margin-top: 2rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.5rem;
-    justify-items: center;
+.buttonContainer{
+    position: absolute;
+    top: 3vh;
+    right: 3vw;
 }
-
-.operationsPanel a {
-    width: 100%;
+header h1{
+    font-size: 4rem;
+    font-family: 'Franklin Gothic Medium';
+}
+.buttonContainer>a>button{
+    background-color: orangered;
+    border-width: 0;
+    border-radius: 5px;
+    color: white;
+    height: 4.5rem;
+    width: 8rem;
+    font-size: 17px;
+}
+a{
+    color: black;
     text-decoration: none;
 }
-
-.operationsPanel button {
-    background-color: orangered;
-    border: none;
-    border-radius: 12px;
-    color: white;
-    padding: 1rem;
+footer{
+    clear: both;
+    position: relative;
+    height: 7.5vh;
+    position: absolute;
     width: 100%;
-    font-size: 1rem;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-    cursor: pointer;
-}
-
-.operationsPanel button:hover {
-    background-color: #ff5c00;
-}
-
-footer {
-    background-color: #b45700;
-    color: white;
     text-align: center;
-    padding: 1rem;
-    font-size: 0.95rem;
-    margin-top: auto;
+    background-color: #b45700;
+    line-height: 7.5vh;
+}
+main{
+    min-height: 77.5vh;
+    height: 77.5%;
+    background-color: #ffe8ce;
+    text-align: center;
+}
+.operationsPanel{
+    display: flex;
+    flex-direction: column;
+    height: 50vh;
+    justify-content: space-around;
+    align-items: center;
+}
+.operationsPanel button{
+    background-color: orangered;
+    border-width: 0;
+    border-radius: 20px;
+    color: white;
+    height: 4.5rem;
+    width: 15rem;
+    font-size: 17px;
+}
+.operationsPanel a{
+    height: 4.5rem;
+    width: 15rem;
+}
+.productImage{
+    height: 50px;
+}
+.modifyBtn{
+    background-color: orangered;
+    border-width: 0;
+    border-radius: 5px;
+    color: white;
+    height: 1.5rem;
+    width: 10rem;
+}
+.iconButton {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    box-shadow: none;
+}
+.iconButton:focus {
+    outline: none;
+}
+.adminForm{
+    background-color: white;
+    width: 300px;
+    min-height: 35vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    line-height: 2.5;
+    border-radius: 20px;
+    border: 4px solid black;
+}
+.center{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+}
+.adminForm input{
+    width: 250px;
+    height: 23px;
+    font-weight: bolder;
+    color: black;
+    border: 2px solid black;
+}
+.adminForm button{
+    background-color: orangered;
+    width: 258px;
+    height: 29px;
+    font-weight: bolder;
+    color: black;
+    border: 2px solid black;
+}
+.adminForm h2{
+    font-size: xx-large;
+    font-family:Verdana;
+    margin: 0;
+}
+.adminForm form{
+    margin: 30px;
+}
+table{
+    width: 100%;
+}
+td,th{
+    border: 1px solid black;
 }
