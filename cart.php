@@ -1,22 +1,6 @@
 <?php
 session_start();
-
-if (!isset($_SESSION['userID'])) {
-    echo "Musisz być zalogowany, aby zobaczyć koszyk.";
-    exit;
-}
 require './db.php';
-
-$uzytkownik_id = $_SESSION['userID'];
-
-$adres_result = mysqli_query($db, "SELECT * FROM adres WHERE uzytkownik_id = $uzytkownik_id LIMIT 1");
-$adres_row = mysqli_fetch_assoc($adres_result);
-$adres_panstwo = $adres_row['panstwo'] ?? '';
-$adres_miasto = $adres_row['miasto'] ?? '';
-$adres_ulica = $adres_row['ulica'] ?? '';
-$adres_numer_domu = $adres_row['numer_domu'] ?? '';
-$adres_numer_mieszkania = $adres_row['numer_mieszkania'] ?? '';
-$adres_kod_pocztowy = $adres_row['kod_pocztowy'] ?? '';
 
 $products = [];
 $quantities = [];
@@ -79,7 +63,7 @@ if (isset($_COOKIE['koszyk']) && $_COOKIE['koszyk'] !== '') {
         <?php if (empty($products)): ?>
             <p>Koszyk jest pusty.</p>
         <?php else: ?>
-            <form action="order.php" method="post" onsubmit="return confirm('Czy na pewno chcesz złożyć zamówienie?');">
+            <form>
                 <table>
                     <thead>
                         <tr>
@@ -100,13 +84,10 @@ if (isset($_COOKIE['koszyk']) && $_COOKIE['koszyk'] !== '') {
                             $value = $qty * $price;
                             ?>
                             <tr>
-                                <td><img src="./images/<?= $product['url_zdjecia'] ?? 'placeholder.png' ?>" alt="produkt" width="300" high="300"></td>
+                                <td><img src="./images/<?= $product['url_zdjecia'] ?? 'placeholder.png' ?>" alt="produkt" width="100" height="100"></td>
                                 <td><?= htmlspecialchars($product['nazwa']) ?></td>
                                 <td><?= number_format($price, 2, '.', '') ?> zł</td>
-                                <td>
-                                    <input type="hidden" name="produkt_id[]" value="<?= $id ?>">
-                                    <input type="number" name="ilosc[]" value="<?= $qty ?>" min="0">
-                                </td>
+                                <td><?= $qty ?></td>
                                 <td><?= number_format($value, 2, '.', '') ?> zł</td>
                                 <td>
                                     <button type="button" onclick="removeFromCart(<?= $id ?>)">Usuń</button>
@@ -115,15 +96,8 @@ if (isset($_COOKIE['koszyk']) && $_COOKIE['koszyk'] !== '') {
                         <?php endforeach; ?>
                     </tbody>
                 </table>
-                
-                <h3>Dane do wysyłki</h3>
-                <label>Państwo: <input type="text" name="panstwo" required value="<?= htmlspecialchars($adres_panstwo) ?>"></label><br>
-                <label>Miasto: <input type="text" name="miasto" required value="<?= htmlspecialchars($adres_miasto) ?>"></label><br>
-                <label>Ulica: <input type="text" name="ulica" required value="<?= htmlspecialchars($adres_ulica) ?>"></label><br>
-                <label>Nr domu: <input type="text" name="numer_domu" required value="<?= htmlspecialchars($adres_numer_domu) ?>"></label><br>
-                <label>Nr mieszkania: <input type="text" name="numer_mieszkania" required value="<?= htmlspecialchars($adres_numer_mieszkania) ?>"></label><br>
-                <label>Kod pocztowy: <input type="text" name="kod_pocztowy" pattern="\d{2}-?\d{3}" required value="<?= htmlspecialchars($adres_kod_pocztowy) ?>"></label><br><br>
-                <button type="submit">Zamów i zapłać</button>
+                <br>
+                <a href="checkout.php" class="checkout-btn" style="display:inline-block;padding:12px 32px;background:#336633;color:#fff;border-radius:4px;text-decoration:none;font-size:18px;">PRZEJDŹ DO KASY</a>
             </form>
         <?php endif; ?>
     </main>
